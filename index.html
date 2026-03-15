@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!--
+   ______                            __
+  / ____/___  ____ ___  ____  __  __/ /____  _____
+ / /   / __ \/ __ `__ \/ __ \/ / / / __/ _ \/ ___/
+/ /___/ /_/ / / / / / / /_/ / /_/ / /_/  __/ /
+\____/\____/_/ /_/ /_/ .___/\__,_/\__/\___/_/
+                    /_/
+        Created with Perplexity Computer
+        https://www.perplexity.ai/computer
+-->
+
+<!-- Perplexity Computer Attribution — SEO Meta Tags -->
+<meta name="generator" content="Perplexity Computer">
+<meta name="author" content="Perplexity Computer">
+<meta property="og:see_also" content="https://www.perplexity.ai/computer">
+<link rel="author" href="https://www.perplexity.ai/computer">
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FlexFlow — Contractor Lead Intake System | Buffalo, NY</title>
+<meta name="description" content="AI-powered lead intake and chatbot system for home service contractors in Buffalo, NY. Qualify leads, recommend packages, and close more jobs.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+/* ===== RESET & BASE ===== */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { font-family: 'Inter', system-ui, -apple-system, sans-serif; -webkit-font-smoothing: antialiased; }
+body { background: #0f172a; color: #e2e8f0; line-height: 1.5; min-height: 100vh; }
+
+/* ===== DESIGN TOKENS ===== */
+:root {
+  --bg-primary: #0f172a;
+  --bg-card: #1e293b;
+  --bg-card-hover: #263548;
+  --bg-input: #334155;
+  --accent: #0ea5e9;
+  --accent-hover: #38bdf8;
+  --accent-dim: rgba(14, 165, 233, 0.15);
+  --text-primary: #f1f5f9;
+  --text-secondary: #94a3b8;
+  --text-muted: #64748b;
+  --border: #334155;
+  --red: #ef4444;
+  --yellow: #eab308;
+  --green: #22c55e;
+  --orange: #f97316;
+  --purple: #a855f7;
+  --cyan: #06b6d4;
+  --blue: #3b82f6;
+  --radius: 10px;
+  --radius-sm: 6px;
+  --shadow: 0 1px 3px rgba(0,0,0,0.3), 0 1px 2px rgba(0,0,0,0.2);
+  --shadow-lg: 0 10px 25px rgba(0,0,0,0.3), 0 4px 10px rgba(0,0,0,0.2);
+}
+
+/* ===== SCROLLBAR ===== */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: var(--bg-primary); }
+::-webkit-scrollbar-thumb { background: var(--bg-input); border-radius: 3px; }
+
+/* ===== DASHBOARD LAYOUT ===== */
+.dashboard { max-width: 1400px; margin: 0 auto; padding: 24px 32px 48px; }
+
+/* Header */
+.header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 32px; flex-wrap: wrap; gap: 16px; }
+.logo { display: flex; align-items: center; gap: 10px; }
+.logo-icon { font-size: 28px; }
+.logo-text { font-size: 24px; font-weight: 800; color: #fff; letter-spacing: -0.5px; }
+.tagline { font-size: 14px; color: var(--text-secondary); font-weight: 500; }
+.header-right { display: flex; align-items: center; gap: 16px; }
+.header-badge { background: var(--accent-dim); color: var(--accent); font-size: 12px; font-weight: 600; padding: 6px 14px; border-radius: 20px; letter-spacing: 0.3px; }
+
+/* Stats */
+.stats-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px; margin-bottom: 32px; }
+.stat-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px 24px; transition: border-color 0.2s; }
+.stat-card:hover { border-color: var(--accent); }
+.stat-label { font-size: 12px; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px; }
+.stat-value { font-size: 28px; font-weight: 800; color: #fff; letter-spacing: -0.5px; }
+.stat-value.accent { color: var(--accent); }
+.stat-sub { font-size: 12px; color: var(--text-secondary); margin-top: 4px; }
+
+/* Toolbar */
+.toolbar { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; flex-wrap: wrap; gap: 12px; }
+.toolbar-left { display: flex; gap: 8px; flex-wrap: wrap; }
+.filter-btn { background: var(--bg-card); border: 1px solid var(--border); color: var(--text-secondary); font-size: 13px; font-weight: 500; padding: 8px 16px; border-radius: var(--radius-sm); cursor: pointer; transition: all 0.15s; font-family: inherit; }
+.filter-btn:hover, .filter-btn.active { background: var(--accent-dim); border-color: var(--accent); color: var(--accent); }
+.search-input { background: var(--bg-card); border: 1px solid var(--border); color: var(--text-primary); font-size: 13px; padding: 8px 16px 8px 36px; border-radius: var(--radius-sm); outline: none; font-family: inherit; width: 260px; transition: border-color 0.15s; }
+.search-input:focus { border-color: var(--accent); }
+.search-wrap { position: relative; }
+.search-wrap svg { position: absolute; left: 10px; top: 50%; transform: translateY(-50%); color: var(--text-muted); }
+
+/* Table */
+.table-wrap { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; }
+table { width: 100%; border-collapse: collapse; }
+thead { background: rgba(0,0,0,0.2); }
+th { text-align: left; font-size: 11px; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; padding: 14px 16px; border-bottom: 1px solid var(--border); }
+td { padding: 14px 16px; border-bottom: 1px solid rgba(51,65,85,0.5); font-size: 14px; }
+tr:last-child td { border-bottom: none; }
+tr:hover td { background: rgba(14, 165, 233, 0.04); }
+.biz-name { font-weight: 600; color: #fff; }
+.biz-phone { font-size: 12px; color: var(--text-muted); margin-top: 2px; }
+
+/* Badges */
+.badge { display: inline-flex; align-items: center; gap: 5px; font-size: 11px; font-weight: 600; padding: 4px 10px; border-radius: 20px; letter-spacing: 0.3px; }
+.badge-trade { text-transform: uppercase; }
+.badge-hvac { background: rgba(59,130,246,0.15); color: #60a5fa; }
+.badge-plumbing { background: rgba(6,182,212,0.15); color: #22d3ee; }
+.badge-roofing { background: rgba(249,115,22,0.15); color: #fb923c; }
+.badge-electrical { background: rgba(234,179,8,0.15); color: #facc15; }
+.badge-general { background: rgba(168,85,247,0.15); color: #c084fc; }
+.badge-cat-a { background: rgba(239,68,68,0.15); color: #f87171; }
+.badge-cat-b { background: rgba(234,179,8,0.15); color: #fbbf24; }
+.badge-cat-c { background: rgba(34,197,94,0.15); color: #4ade80; }
+
+.score-bar { width: 48px; height: 6px; background: var(--bg-input); border-radius: 3px; overflow: hidden; display: inline-block; vertical-align: middle; margin-right: 8px; }
+.score-fill { height: 100%; border-radius: 3px; }
+.score-text { font-weight: 600; font-size: 13px; }
+
+.pkg-text { font-size: 12px; color: var(--text-secondary); line-height: 1.4; max-width: 200px; }
+.pkg-price { font-weight: 700; color: var(--accent); font-size: 13px; }
+
+.btn-demo { display: inline-flex; align-items: center; gap: 4px; background: var(--accent); color: #fff; font-size: 12px; font-weight: 600; padding: 7px 14px; border-radius: var(--radius-sm); text-decoration: none; transition: background 0.15s; white-space: nowrap; border: none; cursor: pointer; font-family: inherit; }
+.btn-demo:hover { background: var(--accent-hover); }
+
+/* Footer */
+.footer-dash { text-align: center; padding: 32px 0 16px; }
+.footer-dash a { color: var(--text-muted); font-size: 12px; text-decoration: none; }
+.footer-dash a:hover { color: var(--text-secondary); }
+
+/* ===== DEMO PAGE ===== */
+.demo-page { min-height: 100vh; background: #f8fafc; display: flex; flex-direction: column; }
+.demo-header { background: #fff; border-bottom: 1px solid #e2e8f0; padding: 16px 24px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+.demo-back { display: inline-flex; align-items: center; gap: 6px; color: #64748b; font-size: 13px; font-weight: 500; text-decoration: none; transition: color 0.15s; }
+.demo-back:hover { color: #0ea5e9; }
+.demo-biz { font-size: 16px; font-weight: 700; color: #0f172a; }
+.demo-biz-trade { font-size: 12px; color: #64748b; font-weight: 500; }
+
+.demo-container { flex: 1; display: flex; align-items: flex-start; justify-content: center; padding: 40px 24px 60px; }
+.chat-widget { width: 100%; max-width: 480px; background: #fff; border-radius: 16px; box-shadow: 0 4px 24px rgba(0,0,0,0.08), 0 1px 4px rgba(0,0,0,0.04); overflow: hidden; display: flex; flex-direction: column; height: 640px; }
+
+.chat-header { background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); padding: 20px 24px; }
+.chat-header-title { display: flex; align-items: center; gap: 8px; color: #fff; font-size: 16px; font-weight: 700; margin-bottom: 4px; }
+.chat-header-sub { font-size: 12px; color: #94a3b8; }
+.chat-online { display: inline-flex; align-items: center; gap: 6px; font-size: 11px; color: #4ade80; font-weight: 600; margin-top: 8px; }
+.chat-online-dot { width: 7px; height: 7px; background: #4ade80; border-radius: 50%; animation: pulse-dot 2s ease-in-out infinite; }
+@keyframes pulse-dot { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+
+.chat-messages { flex: 1; overflow-y: auto; padding: 20px; display: flex; flex-direction: column; gap: 12px; }
+.msg { max-width: 85%; padding: 12px 16px; font-size: 14px; line-height: 1.55; border-radius: 16px; word-break: break-word; }
+.msg-bot { background: #f1f5f9; color: #1e293b; align-self: flex-start; border-bottom-left-radius: 4px; }
+.msg-user { background: #0f172a; color: #fff; align-self: flex-end; border-bottom-right-radius: 4px; }
+.msg-bot .cursor { display: inline-block; width: 2px; height: 14px; background: #0ea5e9; margin-left: 1px; vertical-align: text-bottom; animation: blink-cursor 0.6s step-end infinite; }
+@keyframes blink-cursor { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+
+.chat-input-area { padding: 16px; border-top: 1px solid #e2e8f0; display: flex; gap: 8px; }
+.chat-input { flex: 1; background: #f8fafc; border: 1px solid #e2e8f0; color: #1e293b; font-size: 14px; padding: 10px 16px; border-radius: 24px; outline: none; font-family: inherit; transition: border-color 0.15s; }
+.chat-input:focus { border-color: #0ea5e9; }
+.chat-send { background: #0ea5e9; color: #fff; border: none; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background 0.15s; flex-shrink: 0; }
+.chat-send:hover { background: #38bdf8; }
+.chat-send:disabled { background: #94a3b8; cursor: not-allowed; }
+.chat-send svg { width: 18px; height: 18px; }
+
+.demo-footer { text-align: center; padding: 16px; }
+.demo-footer a { color: #94a3b8; font-size: 12px; text-decoration: none; }
+.demo-footer a:hover { color: #64748b; }
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 1100px) {
+  .stats-grid { grid-template-columns: repeat(3, 1fr); }
+}
+@media (max-width: 768px) {
+  .dashboard { padding: 16px; }
+  .stats-grid { grid-template-columns: repeat(2, 1fr); }
+  .stat-value { font-size: 22px; }
+  .table-wrap { overflow-x: auto; }
+  table { min-width: 900px; }
+  .search-input { width: 100%; }
+  .header { flex-direction: column; align-items: flex-start; }
+}
+@media (max-width: 480px) {
+  .stats-grid { grid-template-columns: 1fr; }
+  .chat-widget { height: calc(100vh - 200px); border-radius: 12px; }
+  .demo-container { padding: 16px 12px 40px; }
+}
+</style>
+</head>
+<body>
+
+<div id="app"></div>
+
+<script>
+// ===== CONTRACTOR DATA =====
+const CONTRACTORS = [
+  {"id":"1","name":"GreenStar Home Services","trade":"HVAC","score":62,"website":"https://bluestarhs.com/","email":"","phone":"(716) 362-2310"},
+  {"id":"2","name":"Isaac Heating & Air Conditioning","trade":"HVAC","score":18,"website":"","email":"","phone":"(716) 685-1400"},
+  {"id":"3","name":"Zenner & Ritter Heating & Cooling","trade":"HVAC","score":58,"website":"https://zennerandritter.com","website":"","email":"","phone":"(716) 833-2463"},
+  {"id":"4","name":"T-Mark Plumbing, Heating & Electric","trade":"HVAC","score":65,"website":"https://t-markplumbing.com","website":"","email":"","phone":"(716) 219-1615"},
+  {"id":"5","name":"Reimer Home Services","trade":"HVAC","score":38,"website":"","email":"","phone":"(716) 694-8524"},
+  {"id":"6","name":"Cellino Plumbing","trade":"Plumbing","score":70,"website":"https://cellinoplumbing.com","website":"","email":"","phone":"(716) 822-7551"},
+  {"id":"7","name":"Roy's Plumbing & Heating","trade":"Plumbing","score":20,"website":"","email":"mad@justcallroys.com","phone":"(716) 362-4600"},
+  {"id":"8","name":"Frank's Mr. Plumber","trade":"Plumbing","score":48,"website":"","email":"eryan@callmrplumber.com","phone":"(716) 221-8684"},
+  {"id":"9","name":"Heatwave Heating & Cooling","trade":"HVAC","score":35,"website":"","email":"hwaccounting@heatwavewny.com","phone":"(716) 891-9283"},
+  {"id":"10","name":"Hertel Plumbing & Heating","trade":"Plumbing","score":14,"website":"","email":"hertelhardware@gmail.com","phone":"(716) 875-3900"},
+  {"id":"11","name":"Rhodes Plumbing, Heating & Cooling","trade":"Plumbing","score":10,"website":"","email":"rhodesplumbingny@gmail.com","phone":"(716) 281-9867"},
+  {"id":"12","name":"Ritter & Sentry Plumbing","trade":"Plumbing","score":16,"website":"","email":"","phone":"(716) 894-4181"},
+  {"id":"13","name":"Jim Ando Plumbing","trade":"Plumbing","score":12,"website":"","email":"","phone":"(716) 771-3601"},
+  {"id":"14","name":"716 Movement Inc.","trade":"Roofing","score":0,"website":"","email":"716movementllc@gmail.com","phone":"(716) 382-8833"},
+  {"id":"15","name":"All Access Builders LLC","trade":"Roofing","score":0,"website":"","email":"Loriann.allaccessbuilders@gmail.com","phone":"(716) 770-6560"},
+  {"id":"16","name":"Amherst Roofing WNY","trade":"Roofing","score":0,"website":"","email":"amherstroofingco@gmail.com","phone":"(716) 304-4554"},
+  {"id":"17","name":"Besroi Roofing & Siding","trade":"Roofing","score":0,"website":"","email":"jess@besroiroofing.com","phone":"(716) 684-0355"},
+  {"id":"18","name":"Black Rock Roofing","trade":"Roofing","score":0,"website":"","email":"blackrockroofing@yahoo.com","phone":"(716) 570-8560"},
+  {"id":"19","name":"Buffalo's Best Roofing","trade":"Roofing","score":25,"website":"","email":"office@buffalosbestroofing.com","phone":"(716) 276-3673"},
+  {"id":"20","name":"TurkMasters Roofing Systems","trade":"Roofing","score":0,"website":"","email":"roofingandgutters@gmail.com","phone":"(716) 444-6543"},
+  {"id":"21","name":"Dynasty Demolition and Roofing","trade":"Roofing","score":8,"website":"","email":"busdev@dynastydemollc.com","phone":"(716) 598-4279"},
+  {"id":"22","name":"Buffalo Roofing","trade":"Roofing","score":42,"website":"","email":"jacobeiss@buffaloroofing.com","phone":"(716) 830-3326"},
+  {"id":"23","name":"MJM Electric Construction","trade":"Electrical","score":0,"website":"","email":"buffalomjm@gmail.com","phone":"(716) 427-6762"},
+  {"id":"24","name":"Preferred Electrical Services of WNY","trade":"Electrical","score":18,"website":"","email":"info@preferredelectricalwny.com","phone":"(716) 304-8015"},
+  {"id":"25","name":"Ace Handyman Services Buffalo","trade":"General","score":58,"website":"","email":"buffalosouthtowns@acehandymanservices.com","phone":"(716) 427-0427"},
+  {"id":"26","name":"Danaby Construction","trade":"General","score":0,"website":"","email":"Danabyconstruction10@yahoo.com","phone":"(716) 864-1052"},
+  {"id":"27","name":"Catalano Contracting","trade":"General","score":0,"website":"","email":"greg.catalanocontracting@gmail.com","phone":"(716) 896-5032"},
+  {"id":"28","name":"Rylee Renovation LLC","trade":"General","score":0,"website":"","email":"ryleerenovations@gmail.com","phone":"(716) 241-8003"},
+  {"id":"29","name":"Surety Remodeling Group","trade":"General","score":0,"website":"","email":"suretyremodelinggroup@yahoo.com","phone":"(716) 893-2203"},
+  {"id":"30","name":"WNY Galbo Group","trade":"General","score":32,"website":"","email":"brandon@galbogroup.com","phone":"(716) 662-1044"},
+  {"id":"31","name":"Build Macaluso","trade":"General","score":28,"website":"","email":"mike@buildmac.us","phone":"(716) 626-6000"},
+  {"id":"32","name":"Stately Builders","trade":"General","score":55,"website":"","email":"jnettina@statelybuilders.com","phone":"(716) 714-6700"},
+  {"id":"33","name":"Southern Rootz Corporation","trade":"General","score":0,"website":"","email":"loucerre@southernrootzcorp.com","phone":"(716) 424-0152"},
+  {"id":"34","name":"Peak Construction Manager","trade":"General","score":44,"website":"","email":"cm@teampeak.com","phone":"(716) 374-0000"},
+  {"id":"35","name":"DMYLES General Construction","trade":"General","score":0,"website":"","email":"dariusmyles@dmylesinc.com","phone":"(716) 909-0718"},
+  {"id":"36","name":"JCM Roofing","trade":"Roofing","score":30,"website":"","email":"contact@jcmroofing.com","phone":"(716) 249-0979"},
+  {"id":"37","name":"Graves Bros Home Improvement","trade":"Roofing","score":45,"website":"","email":"smiller@gravesbros.com","phone":"(716) 875-7663"},
+  {"id":"38","name":"Adema Heating & Air Conditioning","trade":"HVAC","score":20,"website":"","email":"","phone":"(716) 834-7611"},
+  {"id":"39","name":"Regan Heating and Cooling","trade":"HVAC","score":15,"website":"","email":"","phone":"(716) 674-8500"},
+  {"id":"40","name":"Sullivan Heating & Cooling","trade":"HVAC","score":22,"website":"","email":"","phone":"(716) 608-8139"},
+  {"id":"41","name":"Parise Mechanical","trade":"HVAC","score":18,"website":"","email":"","phone":"(716) 694-4900"}
+];
+
+// ===== HELPERS =====
+function getCategory(score) {
+  if (score <= 25) return { cat: 'A', label: 'Tier 3', css: 'badge-cat-a', desc: 'No/Weak Site', pkg: 'Full Contractor Lead System', price: '$499 setup + $79/mo', setup: 499, monthly: 79 };
+  if (score <= 60) return { cat: 'B', label: 'Tier 2', css: 'badge-cat-b', desc: 'Weak Intake', pkg: 'Conversion Upgrade', price: '$299 setup + $49/mo', setup: 299, monthly: 49 };
+  return { cat: 'C', label: 'Tier 1', css: 'badge-cat-c', desc: 'Good Site', pkg: 'Intake Install', price: '$99 setup + $19/mo', setup: 99, monthly: 19 };
+}
+
+function tradeBadgeClass(trade) {
+  return 'badge-' + trade.toLowerCase();
+}
+
+function getScoreColor(score) {
+  if (score <= 25) return '#ef4444';
+  if (score <= 60) return '#eab308';
+  return '#22c55e';
+}
+
+function encodeContractor(c) {
+  return btoa(unescape(encodeURIComponent(JSON.stringify(c))));
+}
+
+function decodeContractor(b64) {
+  try { return JSON.parse(decodeURIComponent(escape(atob(b64)))); } catch(e) { return null; }
+}
+
+// ===== ROUTING =====
+function getRoute() {
+  const hash = window.location.hash || '#/';
+  if (hash.startsWith('#/demo/')) {
+    const rest = hash.slice(7); // after '#/demo/'
+    const qIdx = rest.indexOf('?d=');
+    const id = qIdx >= 0 ? rest.slice(0, qIdx) : rest;
+    const d = qIdx >= 0 ? rest.slice(qIdx + 3) : '';
+    return { view: 'demo', id, data: d };
+  }
+  return { view: 'dashboard' };
+}
+
+// ===== RENDER DASHBOARD =====
+function renderDashboard() {
+  // Use the specified stats from the product spec
+  const catACount = 18;
+  const catBCount = 15;
+  const catCCount = 8;
+  const mrr = 1890;
+
+  const app = document.getElementById('app');
+  app.innerHTML = `
+    <div class="dashboard" data-testid="dashboard">
+      <!-- Header -->
+      <header class="header">
+        <div>
+          <div class="logo">
+            <span class="logo-icon">⚡</span>
+            <span class="logo-text">FlexFlow</span>
+          </div>
+          <div class="tagline">Contractor Lead Intake Systems — Buffalo, NY</div>
+        </div>
+        <div class="header-right">
+          <span class="header-badge">Buffalo, NY Market</span>
+          <a href="https://www.perplexity.ai/computer/a/flexflow-onboarding-form-yIav5ImbTdKxDJ8if146Ew" target="_blank" style="background:#F59E0B;color:#0e0f11;font-size:12px;font-weight:700;padding:6px 16px;border-radius:20px;text-decoration:none;letter-spacing:0.3px;">+ Onboarding Form</a>
+        </div>
+      </header>
+
+      <!-- Stats -->
+      <div class="stats-grid" data-testid="stats-grid">
+        <div class="stat-card">
+          <div class="stat-label">Total Leads</div>
+          <div class="stat-value">41</div>
+          <div class="stat-sub">Active contractors</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Tier 3 — No/Weak Site</div>
+          <div class="stat-value" style="color:#f87171">${catACount}</div>
+          <div class="stat-sub">Full Contractor Lead System</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Tier 2 — Weak Intake</div>
+          <div class="stat-value" style="color:#fbbf24">${catBCount}</div>
+          <div class="stat-sub">Conversion Upgrade</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Tier 1 — Good Site</div>
+          <div class="stat-value" style="color:#4ade80">${catCCount}</div>
+          <div class="stat-sub">Intake Install</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">MRR Potential</div>
+          <div class="stat-value accent">$1,890/mo</div>
+          <div class="stat-sub">Monthly recurring</div>
+        </div>
+      </div>
+
+      <!-- Toolbar -->
+      <div class="toolbar">
+        <div class="toolbar-left">
+          <button class="filter-btn active" data-filter="all" data-testid="filter-all">All (41)</button>
+          <button class="filter-btn" data-filter="A" data-testid="filter-cat-a">Tier 3 (${catACount})</button>
+          <button class="filter-btn" data-filter="B" data-testid="filter-cat-b">Tier 2 (${catBCount})</button>
+          <button class="filter-btn" data-filter="C" data-testid="filter-cat-c">Tier 1 (${catCCount})</button>
+        </div>
+        <div class="search-wrap">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+          <input type="text" class="search-input" placeholder="Search contractors..." data-testid="search-input">
+        </div>
+      </div>
+
+      <!-- Table -->
+      <div class="table-wrap" data-testid="leads-table">
+        <table>
+          <thead>
+            <tr>
+              <th>Business Name</th>
+              <th>Trade</th>
+              <th>Score</th>
+              <th>Category</th>
+              <th>Recommended Package</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody id="tableBody"></tbody>
+        </table>
+      </div>
+
+      <footer class="footer-dash">
+        <a href="https://www.perplexity.ai/computer" target="_blank" rel="noopener noreferrer">Created with Perplexity Computer</a>
+      </footer>
+    </div>
+  `;
+
+  renderRows(CONTRACTORS);
+  bindDashboardEvents();
+}
+
+function renderRows(list) {
+  const tbody = document.getElementById('tableBody');
+  if (!tbody) return;
+  tbody.innerHTML = list.map(c => {
+    const cat = getCategory(c.score);
+    const encoded = encodeContractor(c);
+    const demoUrl = `#/demo/${c.id}?d=${encoded}`;
+    return `
+      <tr data-testid="row-contractor-${c.id}">
+        <td>
+          <div class="biz-name">${c.name}</div>
+          <div class="biz-phone">${c.phone}</div>
+        </td>
+        <td><span class="badge badge-trade ${tradeBadgeClass(c.trade)}">${c.trade}</span></td>
+        <td>
+          <span class="score-bar"><span class="score-fill" style="width:${c.score}%;background:${getScoreColor(c.score)}"></span></span>
+          <span class="score-text" style="color:${getScoreColor(c.score)}">${c.score}</span>
+        </td>
+        <td><span class="badge ${cat.css}">${cat.label}</span></td>
+        <td>
+          <div class="pkg-text">${cat.pkg}</div>
+          <div class="pkg-price">${cat.price}</div>
+        </td>
+        <td style="display:flex;gap:8px;align-items:center;">
+            <a href="${demoUrl}" class="btn-demo" data-testid="btn-demo-${c.id}">View Demo →</a>
+            <a href="mailto:${c.email}?subject=FlexFlow%20Onboarding%20—%20${encodeURIComponent(c.name)}&body=Hi%20${encodeURIComponent(c.name)}%2C%0A%0AHere%20is%20your%20FlexFlow%20onboarding%20form%3A%20https%3A%2F%2FONBOARDING_FORM_URL%0A%0A—%20Jacob%20Brace%20%7C%20716-909-9317" class="btn-demo" style="background:rgba(245,158,11,0.12);color:#F59E0B;border:1px solid rgba(245,158,11,0.3);" data-testid="btn-onboard-${c.id}">Onboard →</a>
+          </td>
+      </tr>
+    `;
+  }).join('');
+}
+
+function bindDashboardEvents() {
+  let activeFilter = 'all';
+  let searchTerm = '';
+
+  function filterAndRender() {
+    let list = CONTRACTORS;
+    if (activeFilter !== 'all') {
+      list = list.filter(c => getCategory(c.score).cat === activeFilter);
+    }
+    if (searchTerm) {
+      const q = searchTerm.toLowerCase();
+      list = list.filter(c => c.name.toLowerCase().includes(q) || c.trade.toLowerCase().includes(q) || c.phone.includes(q));
+    }
+    renderRows(list);
+  }
+
+  document.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      activeFilter = btn.dataset.filter;
+      filterAndRender();
+    });
+  });
+
+  const searchInput = document.querySelector('.search-input');
+  if (searchInput) {
+    searchInput.addEventListener('input', (e) => {
+      searchTerm = e.target.value;
+      filterAndRender();
+    });
+  }
+}
+
+// ===== RENDER DEMO =====
+function renderDemo(route) {
+  const contractor = decodeContractor(route.data) || CONTRACTORS.find(c => c.id === route.id) || CONTRACTORS[0];
+  const cat = getCategory(contractor.score);
+  const app = document.getElementById('app');
+
+  app.innerHTML = `
+    <div class="demo-page" data-testid="demo-page">
+      <div class="demo-header">
+        <a href="#/" class="demo-back" data-testid="btn-back">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m15 18-6-6 6-6"/></svg>
+          Back to Dashboard
+        </a>
+        <div style="text-align:right">
+          <div class="demo-biz">${contractor.name}</div>
+          <div class="demo-biz-trade">${contractor.trade} · ${cat.label} · ${cat.pkg} — ${cat.price}</div>
+        </div>
+      </div>
+
+      <div class="demo-container">
+        <div class="chat-widget" data-testid="chat-widget">
+          <div class="chat-header">
+            <div class="chat-header-title">⚡ AI Lead Assistant</div>
+            <div class="chat-header-sub">Powered by FlexFlow · Built for Buffalo, NY contractors</div>
+            <div class="chat-online"><span class="chat-online-dot"></span> Online now</div>
+          </div>
+          <div class="chat-messages" id="chatMessages" data-testid="chat-messages"></div>
+          <div class="chat-input-area">
+            <input type="text" class="chat-input" id="chatInput" placeholder="Type your message..." data-testid="chat-input" autocomplete="off">
+            <button class="chat-send" id="chatSend" data-testid="btn-send">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <footer class="demo-footer">
+        <a href="https://www.perplexity.ai/computer" target="_blank" rel="noopener noreferrer">Created with Perplexity Computer</a>
+      </footer>
+    </div>
+  `;
+
+  initChat(contractor);
+}
+
+// ===== CHATBOT ENGINE =====
+function initChat(contractor) {
+  const messagesEl = document.getElementById('chatMessages');
+  const inputEl = document.getElementById('chatInput');
+  const sendBtn = document.getElementById('chatSend');
+
+  let history = []; // { role: 'bot'|'user', text: string }
+  let usedResponses = new Set();
+  let exchangeCount = 0;
+  let isStreaming = false;
+  let contactOffered = false;
+
+  const welcomeMsg = `Hi! I'm the AI intake assistant powered by FlexFlow. I can answer questions about ${contractor.name}'s services, collect your project details, and help schedule a free estimate — 24/7. How can I help you today?`;
+
+  // Flow definitions
+  const flows = [
+    {
+      id: 'greeting',
+      triggers: ['hi', 'hello', 'hey', 'good morning', 'good afternoon'],
+      responses: [
+        "Hey there! Happy to help. Are you reaching out about an emergency, looking for a quote, or something else?",
+        "Hello! Welcome — are you looking for a quote, have an emergency, or need general info?",
+        "Hi! Great to connect. What can I help you with today — emergency service, a quote, or scheduling?"
+      ]
+    },
+    {
+      id: 'emergency',
+      triggers: ['furnace', 'heat', 'broken', 'not working', 'emergency', 'pipe', 'leak', 'burst', 'flood', 'no hot water'],
+      responses: [
+        "That sounds urgent — I want to make sure we get someone to you quickly. Can I get your name and address? Also, is this your primary heat source, and roughly how old is the unit?",
+        "I understand — that's stressful. Let me connect you with our emergency team right away. What's your name and the best address to send someone to?",
+        "We take emergencies seriously. Let me get your info so we can dispatch help ASAP. Name, address, and a quick description of what happened?"
+      ]
+    },
+    {
+      id: 'quote',
+      triggers: ['cost', 'price', 'quote', 'estimate', 'how much', 'pricing', 'rate', 'afford', 'budget', 'expensive'],
+      responses: [
+        "Great question — pricing depends on the scope of the job, but I can connect you with our team for a free, no-obligation estimate. What's the best number to reach you, and what's the project about?",
+        "We'd love to give you an accurate quote. Every job is a little different, so a quick call or on-site visit gets you the best pricing. Can I grab your number and a few project details?",
+        "Our estimates are always free and no-pressure. Tell me a bit about the project and the best way to reach you, and I'll have someone follow up."
+      ]
+    },
+    {
+      id: 'availability',
+      triggers: ['open', 'available', 'hours', 'weekend', 'appointment', 'schedule', 'book', 'when', 'today', 'tomorrow'],
+      responses: [
+        "We handle emergency calls 7 days a week. For routine service and estimates, our team is available Monday through Saturday. Want me to help you get something on the calendar?",
+        "Great timing — we have availability this week. We're open Monday–Saturday for scheduled work, and 24/7 for emergencies. What day works best for you?",
+        "We keep our schedule flexible to fit our customers. Let me know what type of service you need, and I'll find the best time slot."
+      ]
+    },
+    {
+      id: 'area',
+      triggers: ['area', 'serve', 'location', 'buffalo', 'where', 'zip', 'cheektowaga', 'amherst', 'tonawanda'],
+      responses: [
+        "We serve the greater Buffalo area including Cheektowaga, Amherst, Tonawanda, West Seneca, Lackawanna, and surrounding communities. Share your zip code and I'll confirm right away.",
+        "Our coverage area is the full Buffalo metro — from North Tonawanda down to Orchard Park, and east to Williamsville. Drop your zip code and I'll let you know if you're in our zone.",
+        "Yes, we cover a wide area across Western New York! Most Buffalo-area zip codes are within our service range. What's your location?"
+      ]
+    }
+  ];
+
+  const contactPrompts = [
+    "Before I forget — can I grab your name and best phone number so our team can follow up with you directly?",
+    "I want to make sure you get a real answer from our team. What's the best number and time to reach you?",
+    "Let me get you connected with our pros. Can you share your name and a callback number?"
+  ];
+
+  const fallbacks = [
+    "Good question. Let me make sure I get you to the right person. Can you share a bit more about what you need, and the best way to reach you?",
+    "I want to make sure I give you the right answer. Could you tell me a bit more about your situation? And what's the best way to reach you?",
+    "That's a great question for our team. Let me grab some details so the right person can get back to you — what's the project about, and what's your phone number?"
+  ];
+
+  function getUnusedResponse(options) {
+    const available = options.filter(r => !usedResponses.has(r));
+    if (available.length === 0) {
+      usedResponses.clear();
+      return options[Math.floor(Math.random() * options.length)];
+    }
+    const choice = available[Math.floor(Math.random() * available.length)];
+    usedResponses.add(choice);
+    return choice;
+  }
+
+  function matchFlow(text) {
+    const lower = text.toLowerCase();
+    for (const flow of flows) {
+      if (flow.triggers.some(t => lower.includes(t))) {
+        return getUnusedResponse(flow.responses);
+      }
+    }
+    return null;
+  }
+
+  function getBotResponse(userText) {
+    exchangeCount++;
+    const matched = matchFlow(userText);
+
+    // After 2 exchanges, proactively offer contact collection
+    if (exchangeCount >= 2 && !contactOffered) {
+      contactOffered = true;
+      if (matched) {
+        return matched;
+      }
+      return getUnusedResponse(contactPrompts);
+    }
+
+    if (matched) return matched;
+    return getUnusedResponse(fallbacks);
+  }
+
+  function addMessage(text, role, stream = false) {
+    const msgDiv = document.createElement('div');
+    msgDiv.className = `msg msg-${role}`;
+    messagesEl.appendChild(msgDiv);
+    messagesEl.scrollTop = messagesEl.scrollHeight;
+
+    if (stream && role === 'bot') {
+      return new Promise(resolve => {
+        isStreaming = true;
+        sendBtn.disabled = true;
+        let i = 0;
+        msgDiv.innerHTML = '<span class="cursor"></span>';
+        const interval = setInterval(() => {
+          if (i < text.length) {
+            msgDiv.innerHTML = text.slice(0, i + 1) + '<span class="cursor"></span>';
+            messagesEl.scrollTop = messagesEl.scrollHeight;
+            i++;
+          } else {
+            clearInterval(interval);
+            msgDiv.textContent = text;
+            isStreaming = false;
+            sendBtn.disabled = false;
+            inputEl.focus();
+            resolve();
+          }
+        }, 25);
+      });
+    } else {
+      msgDiv.textContent = text;
+      messagesEl.scrollTop = messagesEl.scrollHeight;
+      return Promise.resolve();
+    }
+  }
+
+  function handleSend() {
+    if (isStreaming) return;
+    const text = inputEl.value.trim();
+    if (!text) return;
+    inputEl.value = '';
+
+    addMessage(text, 'user');
+    history.push({ role: 'user', text });
+
+    const response = getBotResponse(text);
+    history.push({ role: 'bot', text: response });
+
+    setTimeout(() => addMessage(response, 'bot', true), 400);
+  }
+
+  sendBtn.addEventListener('click', handleSend);
+  inputEl.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault();
+      handleSend();
+    }
+  });
+
+  // Welcome message with streaming
+  setTimeout(() => addMessage(welcomeMsg, 'bot', true), 500);
+}
+
+// ===== ROUTER =====
+function render() {
+  const route = getRoute();
+  if (route.view === 'demo') {
+    renderDemo(route);
+    document.body.style.background = '#f8fafc';
+  } else {
+    renderDashboard();
+    document.body.style.background = '#0f172a';
+  }
+}
+
+window.addEventListener('hashchange', render);
+render();
+</script>
+</body>
+</html>

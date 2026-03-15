@@ -1,0 +1,1020 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!--
+   ______                            __
+  / ____/___  ____ ___  ____  __  __/ /____  _____
+ / /   / __ \/ __ `__ \/ __ \/ / / / __/ _ \/ ___/
+/ /___/ /_/ / / / / / / /_/ / /_/ / /_/  __/ /
+\____/\____/_/ /_/ /_/ .___/\__,_/\__/\___/_/
+                    /_/
+        Created with Perplexity Computer
+        https://www.perplexity.ai/computer
+-->
+
+<!-- Perplexity Computer Attribution — SEO Meta Tags -->
+<meta name="generator" content="Perplexity Computer">
+<meta name="author" content="Perplexity Computer">
+<meta property="og:see_also" content="https://www.perplexity.ai/computer">
+<link rel="author" href="https://www.perplexity.ai/computer">
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FlexFlow — Client Onboarding Form</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #0e0f11;
+    --card: #141619;
+    --border: #2a2d35;
+    --amber: #F59E0B;
+    --amber-hover: #D97706;
+    --amber-glow: rgba(245, 158, 11, 0.15);
+    --text-primary: #f0f0f2;
+    --text-secondary: #9ca3af;
+    --text-muted: #6b7280;
+    --input-bg: #1a1d22;
+    --input-border: #2a2d35;
+    --input-focus: #F59E0B;
+    --danger: #ef4444;
+    --radius: 8px;
+    --radius-lg: 12px;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--bg);
+    color: var(--text-primary);
+    line-height: 1.6;
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ─── Header ─── */
+  .header {
+    text-align: center;
+    padding: 48px 24px 32px;
+    border-bottom: 1px solid var(--border);
+  }
+  .header__logo {
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--amber);
+    letter-spacing: -0.5px;
+  }
+  .header__tagline {
+    color: var(--text-secondary);
+    font-size: 14px;
+    margin-top: 4px;
+    letter-spacing: 0.3px;
+  }
+  .header__subtitle {
+    color: var(--text-muted);
+    font-size: 13px;
+    margin-top: 16px;
+    max-width: 480px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* ─── Progress ─── */
+  .progress {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+    padding: 32px 24px 0;
+    max-width: 640px;
+    margin: 0 auto;
+  }
+  .progress__step {
+    display: flex;
+    align-items: center;
+    gap: 0;
+  }
+  .progress__circle {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    font-weight: 600;
+    border: 2px solid var(--border);
+    color: var(--text-muted);
+    background: var(--bg);
+    transition: all 0.3s ease;
+    flex-shrink: 0;
+    position: relative;
+  }
+  .progress__circle.active {
+    border-color: var(--amber);
+    color: var(--bg);
+    background: var(--amber);
+  }
+  .progress__circle.completed {
+    border-color: var(--amber);
+    color: var(--bg);
+    background: var(--amber);
+  }
+  .progress__line {
+    width: 48px;
+    height: 2px;
+    background: var(--border);
+    transition: background 0.3s ease;
+    flex-shrink: 0;
+  }
+  .progress__line.active {
+    background: var(--amber);
+  }
+  .progress__labels {
+    display: flex;
+    justify-content: space-between;
+    max-width: 640px;
+    margin: 8px auto 0;
+    padding: 0 24px;
+  }
+  .progress__label {
+    font-size: 10px;
+    color: var(--text-muted);
+    text-align: center;
+    width: 64px;
+    transition: color 0.3s ease;
+  }
+  .progress__label.active {
+    color: var(--amber);
+  }
+
+  /* ─── Container ─── */
+  .container {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 24px 16px 64px;
+  }
+
+  /* ─── Section ─── */
+  .section {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 28px 24px;
+    margin-top: 24px;
+  }
+  .section__header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 24px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--border);
+  }
+  .section__title-group {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .section__accent {
+    width: 3px;
+    height: 24px;
+    background: var(--amber);
+    border-radius: 2px;
+    flex-shrink: 0;
+  }
+  .section__title {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--text-primary);
+  }
+  .section__badge {
+    font-size: 11px;
+    font-weight: 600;
+    padding: 3px 10px;
+    border-radius: 20px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .section__badge--required {
+    background: rgba(245, 158, 11, 0.12);
+    color: var(--amber);
+    border: 1px solid rgba(245, 158, 11, 0.25);
+  }
+  .section__badge--optional {
+    background: rgba(107, 114, 128, 0.12);
+    color: var(--text-muted);
+    border: 1px solid rgba(107, 114, 128, 0.25);
+  }
+
+  /* ─── Form Fields ─── */
+  .field {
+    margin-bottom: 20px;
+  }
+  .field:last-child {
+    margin-bottom: 0;
+  }
+  .field__label {
+    display: block;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text-primary);
+    margin-bottom: 6px;
+  }
+  .field__required {
+    color: var(--amber);
+    margin-left: 2px;
+  }
+  .field__note {
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-top: 4px;
+    line-height: 1.5;
+  }
+  .field__hint {
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-bottom: 6px;
+    font-style: italic;
+  }
+
+  input[type="text"],
+  input[type="email"],
+  input[type="tel"],
+  input[type="url"],
+  textarea,
+  select {
+    width: 100%;
+    padding: 10px 14px;
+    background: var(--input-bg);
+    border: 1px solid var(--input-border);
+    border-radius: var(--radius);
+    color: var(--text-primary);
+    font-family: inherit;
+    font-size: 14px;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    outline: none;
+  }
+  input::placeholder,
+  textarea::placeholder {
+    color: var(--text-muted);
+  }
+  input:focus,
+  textarea:focus,
+  select:focus {
+    border-color: var(--amber);
+    box-shadow: 0 0 0 3px var(--amber-glow);
+  }
+  select {
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12' fill='none'%3E%3Cpath d='M3 4.5L6 7.5L9 4.5' stroke='%239ca3af' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    padding-right: 36px;
+    cursor: pointer;
+  }
+  select option {
+    background: var(--card);
+    color: var(--text-primary);
+  }
+  textarea {
+    resize: vertical;
+    min-height: 80px;
+  }
+  textarea.small {
+    min-height: 56px;
+  }
+
+  /* File inputs */
+  input[type="file"] {
+    width: 100%;
+    padding: 10px 14px;
+    background: var(--input-bg);
+    border: 1px dashed var(--input-border);
+    border-radius: var(--radius);
+    color: var(--text-secondary);
+    font-family: inherit;
+    font-size: 13px;
+    cursor: pointer;
+    transition: border-color 0.2s ease;
+  }
+  input[type="file"]:hover,
+  input[type="file"]:focus {
+    border-color: var(--amber);
+  }
+  input[type="file"]::file-selector-button {
+    background: var(--amber);
+    color: var(--bg);
+    border: none;
+    padding: 6px 14px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 600;
+    font-family: inherit;
+    cursor: pointer;
+    margin-right: 12px;
+    transition: background 0.2s ease;
+  }
+  input[type="file"]::file-selector-button:hover {
+    background: var(--amber-hover);
+  }
+
+  /* Radio & Checkbox groups */
+  .radio-group,
+  .checkbox-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 4px;
+  }
+  .radio-option,
+  .checkbox-option {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    padding: 10px 14px;
+    background: var(--input-bg);
+    border: 1px solid var(--input-border);
+    border-radius: var(--radius);
+    transition: border-color 0.2s ease, background 0.2s ease;
+  }
+  .radio-option:hover,
+  .checkbox-option:hover {
+    border-color: rgba(245, 158, 11, 0.4);
+    background: rgba(245, 158, 11, 0.04);
+  }
+  .radio-option input,
+  .checkbox-option input {
+    accent-color: var(--amber);
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+    flex-shrink: 0;
+  }
+  .radio-option span,
+  .checkbox-option span {
+    font-size: 14px;
+    color: var(--text-primary);
+  }
+
+  /* ─── Validation ─── */
+  .field--error input,
+  .field--error textarea,
+  .field--error select {
+    border-color: var(--danger);
+    box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.15);
+  }
+  .field__error-msg {
+    font-size: 12px;
+    color: var(--danger);
+    margin-top: 4px;
+    display: none;
+  }
+  .field--error .field__error-msg {
+    display: block;
+  }
+
+  /* ─── Submit Button ─── */
+  .submit-area {
+    margin-top: 32px;
+    text-align: center;
+  }
+  .submit-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 40px;
+    background: var(--amber);
+    color: var(--bg);
+    font-family: inherit;
+    font-size: 16px;
+    font-weight: 600;
+    border: none;
+    border-radius: var(--radius);
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
+    box-shadow: 0 2px 12px rgba(245, 158, 11, 0.25);
+  }
+  .submit-btn:hover {
+    background: var(--amber-hover);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 20px rgba(245, 158, 11, 0.35);
+  }
+  .submit-btn:active {
+    transform: translateY(0);
+  }
+  .submit-btn svg {
+    width: 18px;
+    height: 18px;
+  }
+  .submit-note {
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-top: 12px;
+  }
+
+  /* ─── Thank You ─── */
+  .thank-you {
+    display: none;
+    text-align: center;
+    padding: 48px 24px;
+    margin-top: 32px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+  }
+  .thank-you.visible {
+    display: block;
+    animation: fadeIn 0.4s ease;
+  }
+  .thank-you__icon {
+    width: 56px;
+    height: 56px;
+    background: rgba(245, 158, 11, 0.12);
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+  .thank-you__icon svg {
+    width: 28px;
+    height: 28px;
+    color: var(--amber);
+  }
+  .thank-you__title {
+    font-size: 22px;
+    font-weight: 600;
+    margin-bottom: 12px;
+  }
+  .thank-you__text {
+    font-size: 15px;
+    color: var(--text-secondary);
+    max-width: 440px;
+    margin: 0 auto 20px;
+    line-height: 1.7;
+  }
+  .thank-you__contact {
+    font-size: 14px;
+    color: var(--text-muted);
+  }
+  .thank-you__contact a {
+    color: var(--amber);
+    text-decoration: none;
+  }
+  .thank-you__contact a:hover {
+    text-decoration: underline;
+  }
+
+  /* ─── Footer ─── */
+  footer {
+    text-align: center;
+    padding: 32px 24px;
+    border-top: 1px solid var(--border);
+    margin-top: 48px;
+  }
+  footer p {
+    font-size: 12px;
+    color: var(--text-muted);
+  }
+  footer a {
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+  footer a:hover {
+    color: var(--amber);
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ─── Mobile ─── */
+  @media (max-width: 640px) {
+    .header { padding: 32px 16px 24px; }
+    .header__logo { font-size: 26px; }
+    .section { padding: 20px 16px; }
+    .section__header { flex-direction: column; gap: 8px; }
+    .progress__line { width: 28px; }
+    .progress__circle { width: 28px; height: 28px; font-size: 12px; }
+    .progress__label { width: 52px; font-size: 9px; }
+    .submit-btn { width: 100%; justify-content: center; }
+    .radio-group,
+    .checkbox-group { gap: 8px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Header -->
+<header class="header">
+  <div class="header__logo">FlexFlow</div>
+  <div class="header__tagline">Contractor Lead Intake Systems — Buffalo, NY</div>
+  <p class="header__subtitle">Fill out this form to get your lead intake system set up. All fields marked with <span style="color:var(--amber);">*</span> are required.</p>
+</header>
+
+<!-- Progress Indicator -->
+<div class="progress" id="progress">
+  <div class="progress__circle active" id="prog-1">1</div>
+  <div class="progress__line" id="line-1"></div>
+  <div class="progress__circle" id="prog-2">2</div>
+  <div class="progress__line" id="line-2"></div>
+  <div class="progress__circle" id="prog-3">3</div>
+  <div class="progress__line" id="line-3"></div>
+  <div class="progress__circle" id="prog-4">4</div>
+  <div class="progress__line" id="line-4"></div>
+  <div class="progress__circle" id="prog-5">5</div>
+</div>
+<div class="progress__labels">
+  <span class="progress__label active" id="lbl-1">Business</span>
+  <span class="progress__label" id="lbl-2">Brand</span>
+  <span class="progress__label" id="lbl-3">Services</span>
+  <span class="progress__label" id="lbl-4">Reviews</span>
+  <span class="progress__label" id="lbl-5">Intake</span>
+</div>
+
+<!-- Form -->
+<main class="container">
+  <form id="onboarding-form" novalidate>
+
+    <!-- ═══ Section 1: Business Info ═══ -->
+    <div class="section" id="section-1">
+      <div class="section__header">
+        <div class="section__title-group">
+          <div class="section__accent"></div>
+          <h2 class="section__title">Business Info</h2>
+        </div>
+        <span class="section__badge section__badge--required">Required</span>
+      </div>
+
+      <div class="field">
+        <label class="field__label" for="business-name">Business Name <span class="field__required">*</span></label>
+        <input type="text" id="business-name" name="business_name" required placeholder="e.g. Buffalo HVAC Pros">
+        <div class="field__error-msg">Please enter your business name.</div>
+      </div>
+
+      <div class="field">
+        <label class="field__label" for="trade-type">Trade Type <span class="field__required">*</span></label>
+        <select id="trade-type" name="trade_type" required>
+          <option value="" disabled selected>Select your trade</option>
+          <option value="Roofing">Roofing</option>
+          <option value="Plumbing">Plumbing</option>
+          <option value="HVAC">HVAC</option>
+          <option value="Electrical">Electrical</option>
+          <option value="General Contracting">General Contracting</option>
+          <option value="Other">Other</option>
+        </select>
+        <div class="field__error-msg">Please select your trade type.</div>
+      </div>
+
+      <div class="field">
+        <label class="field__label" for="contact-name">Owner / Contact Name <span class="field__required">*</span></label>
+        <input type="text" id="contact-name" name="contact_name" required placeholder="e.g. Mike Johnson">
+        <div class="field__error-msg">Please enter the contact name.</div>
+      </div>
+
+      <div class="field">
+        <label class="field__label" for="business-phone">Business Phone <span class="field__required">*</span></label>
+        <input type="tel" id="business-phone" name="business_phone" required placeholder="(716) 555-0123">
+        <p class="field__note">This will be the click-to-call number on your page.</p>
+        <div class="field__error-msg">Please enter a valid phone number.</div>
+      </div>
+
+      <div class="field">
+        <label class="field__label" for="business-email">Business Email for Lead Routing <span class="field__required">*</span></label>
+        <input type="email" id="business-email" name="business_email" required placeholder="leads@yourbusiness.com">
+        <p class="field__note">All leads will be sent here.</p>
+        <div class="field__error-msg">Please enter a valid email address.</div>
+      </div>
+
+      <div class="field">
+        <label class="field__label" for="service-area">Service Area (city/neighborhoods) <span class="field__required">*</span></label>
+        <textarea id="service-area" name="service_area" required class="small" placeholder="e.g. Buffalo, Amherst, Tonawanda"></textarea>
+        <div class="field__error-msg">Please enter your service area.</div>
+      </div>
+
+      <div class="field">
+        <label class="field__label" for="hours">Hours of Operation <span class="field__required">*</span></label>
+        <input type="text" id="hours" name="hours" required placeholder="e.g. Mon–Fri 8am–6pm, Emergency 24/7">
+        <div class="field__error-msg">Please enter your hours of operation.</div>
+      </div>
+    </div>
+
+    <!-- ═══ Section 2: Website & Brand ═══ -->
+    <div class="section" id="section-2">
+      <div class="section__header">
+        <div class="section__title-group">
+          <div class="section__accent"></div>
+          <h2 class="section__title">Website &amp; Brand</h2>
+        </div>
+        <span class="section__badge section__badge--required">Required where marked</span>
+      </div>
+
+      <div class="field">
+        <label class="field__label" for="website-url">Current Website URL</label>
+        <input type="url" id="website-url" name="website_url" placeholder="https://yoursite.com or leave blank">
+      </div>
+
+      <div class="field">
+        <label class="field__label" for="logo-upload">Logo File</label>
+        <input type="file" id="logo-upload" name="logo" accept=".png,.svg,.jpg,.jpeg,.webp">
+        <p class="field__note">PNG or SVG preferred. If you don't have one, we'll use your business name as text.</p>
+      </div>
+
+      <div class="field">
+        <label class="field__label" for="brand-colors">Brand Colors (if any)</label>
+        <input type="text" id="brand-colors" name="brand_colors" placeholder='e.g. "#FF0000 and white" or "red and black"'>
+      </div>
+
+      <div class="field">
+        <label class="field__label" for="photos-upload">1–3 Photos of Your Work or Trucks</label>
+        <input type="file" id="photos-upload" name="photos" accept="image/*" multiple>
+        <p class="field__note">Used on your intake page if we're building or refreshing it.</p>
+      </div>
+    </div>
+
+    <!-- ═══ Section 3: Services & Jobs ═══ -->
+    <div class="section" id="section-3">
+      <div class="section__header">
+        <div class="section__title-group">
+          <div class="section__accent"></div>
+          <h2 class="section__title">Services &amp; Jobs</h2>
+        </div>
+        <span class="section__badge section__badge--required">Required</span>
+      </div>
+
+      <div class="field">
+        <label class="field__label" for="services-list">List Your Main Services <span class="field__required">*</span></label>
+        <textarea id="services-list" name="services_list" required placeholder="One per line, e.g.&#10;Furnace repair&#10;AC installation&#10;Emergency HVAC"></textarea>
+        <div class="field__error-msg">Please list at least one service.</div>
+      </div>
+
+      <div class="field">
+        <label class="field__label">Emergency Services? <span class="field__required">*</span></label>
+        <div class="radio-group">
+          <label class="radio-option">
+            <input type="radio" name="emergency" value="Yes — 24/7" required>
+            <span>Yes — 24/7</span>
+          </label>
+          <label class="radio-option">
+            <input type="radio" name="emergency" value="Yes — limited hours">
+            <span>Yes — limited hours</span>
+          </label>
+          <label class="radio-option">
+            <input type="radio" name="emergency" value="No">
+            <span>No</span>
+          </label>
+        </div>
+        <div class="field__error-msg">Please select an option.</div>
+      </div>
+
+      <div class="field">
+        <label class="field__label" for="excluded-jobs">Any Jobs You DON'T Take</label>
+        <textarea id="excluded-jobs" name="excluded_jobs" class="small" placeholder="e.g. No commercial, no new construction"></textarea>
+      </div>
+
+      <div class="field">
+        <label class="field__label" for="job-value">Average Job Value Range <span class="field__required">*</span></label>
+        <select id="job-value" name="job_value" required>
+          <option value="" disabled selected>Select a range</option>
+          <option value="Under $500">Under $500</option>
+          <option value="$500–$2,000">$500–$2,000</option>
+          <option value="$2,000–$10,000">$2,000–$10,000</option>
+          <option value="Over $10,000">Over $10,000</option>
+        </select>
+        <div class="field__error-msg">Please select a job value range.</div>
+      </div>
+    </div>
+
+    <!-- ═══ Section 4: Reviews & Trust ═══ -->
+    <div class="section" id="section-4">
+      <div class="section__header">
+        <div class="section__title-group">
+          <div class="section__accent"></div>
+          <h2 class="section__title">Reviews &amp; Trust</h2>
+        </div>
+        <span class="section__badge section__badge--optional">Optional</span>
+      </div>
+
+      <div class="field">
+        <label class="field__label" for="reviews">Paste 2–5 of Your Best Customer Reviews</label>
+        <textarea id="reviews" name="reviews" placeholder="Name + review text. These will appear on your intake page.&#10;&#10;e.g. John D. — &quot;Great work, showed up on time and fixed our furnace same day.&quot;"></textarea>
+        <p class="field__note">Name + review text. These will appear on your intake page.</p>
+      </div>
+
+      <div class="field">
+        <label class="field__label" for="google-profile">Google Business Profile Link</label>
+        <input type="url" id="google-profile" name="google_profile" placeholder="https://g.page/yourbusiness">
+      </div>
+
+      <div class="field">
+        <label class="field__label" for="certifications">Licenses, Certifications, or Badges</label>
+        <input type="text" id="certifications" name="certifications" placeholder='e.g. "Licensed & Insured, BBB Accredited"'>
+      </div>
+    </div>
+
+    <!-- ═══ Section 5: Intake Preferences ═══ -->
+    <div class="section" id="section-5">
+      <div class="section__header">
+        <div class="section__title-group">
+          <div class="section__accent"></div>
+          <h2 class="section__title">Intake Preferences</h2>
+        </div>
+        <span class="section__badge section__badge--required">Required</span>
+      </div>
+
+      <div class="field">
+        <label class="field__label" for="tier">Preferred Tier <span class="field__required">*</span></label>
+        <select id="tier" name="tier" required>
+          <option value="" disabled selected>Select a tier</option>
+          <option value="Tier 1 — Intake Install ($99 + $19/mo)">Tier 1 — Intake Install ($99 + $19/mo)</option>
+          <option value="Tier 2 — Conversion Upgrade ($299 + $49/mo)">Tier 2 — Conversion Upgrade ($299 + $49/mo)</option>
+          <option value="Tier 3 — Full Lead System ($499 + $79/mo)">Tier 3 — Full Lead System ($499 + $79/mo)</option>
+        </select>
+        <div class="field__error-msg">Please select a tier.</div>
+      </div>
+
+      <div class="field">
+        <label class="field__label">How Should Leads Be Delivered? <span class="field__required">*</span></label>
+        <div class="checkbox-group">
+          <label class="checkbox-option">
+            <input type="checkbox" name="delivery" value="Email" checked disabled>
+            <span>Email (required)</span>
+          </label>
+          <label class="checkbox-option">
+            <input type="checkbox" name="delivery" value="Text message">
+            <span>Text message</span>
+          </label>
+          <label class="checkbox-option">
+            <input type="checkbox" name="delivery" value="Both">
+            <span>Both</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="field">
+        <label class="field__label" for="text-phone">Phone Number for Text Alerts (if applicable)</label>
+        <input type="tel" id="text-phone" name="text_phone" placeholder="(716) 555-0123">
+      </div>
+
+      <div class="field">
+        <label class="field__label" for="special-requests">Anything Else / Special Requests</label>
+        <textarea id="special-requests" name="special_requests" class="small" placeholder="e.g. I want a chatbot, custom logo, specific layout…"></textarea>
+      </div>
+    </div>
+
+    <!-- Submit -->
+    <div class="submit-area" id="submit-area">
+      <button type="submit" class="submit-btn" id="submit-btn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2L11 13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+        Submit Onboarding Form
+      </button>
+      <p class="submit-note">This will open your email client with the form details pre-filled.</p>
+    </div>
+
+  </form>
+
+  <!-- Thank You -->
+  <div class="thank-you" id="thank-you">
+    <div class="thank-you__icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+    </div>
+    <h2 class="thank-you__title">Got it — you're all set!</h2>
+    <p class="thank-you__text">Jacob will be in touch within 24 hours to confirm your setup timeline.</p>
+    <p class="thank-you__contact">
+      Questions? <a href="tel:7169099317">716-909-9317</a> &nbsp;|&nbsp; <a href="mailto:lexflowjbrace@gmail.com">lexflowjbrace@gmail.com</a>
+    </p>
+  </div>
+</main>
+
+<!-- Footer -->
+<footer>
+  <p>&copy; 2026 FlexFlow — Buffalo, NY &nbsp;·&nbsp; <a href="https://www.perplexity.ai/computer" target="_blank" rel="noopener noreferrer">Created with Perplexity Computer</a></p>
+</footer>
+
+<script>
+(function() {
+  const form = document.getElementById('onboarding-form');
+  const thankYou = document.getElementById('thank-you');
+  const submitArea = document.getElementById('submit-area');
+
+  // ─── Progress bar tracking via scroll ───
+  const sections = [
+    document.getElementById('section-1'),
+    document.getElementById('section-2'),
+    document.getElementById('section-3'),
+    document.getElementById('section-4'),
+    document.getElementById('section-5')
+  ];
+
+  function updateProgress() {
+    let activeIdx = 0;
+    const scrollY = window.scrollY + window.innerHeight * 0.4;
+    sections.forEach(function(sec, i) {
+      if (sec.offsetTop <= scrollY) activeIdx = i;
+    });
+    for (let i = 1; i <= 5; i++) {
+      const circle = document.getElementById('prog-' + i);
+      const label = document.getElementById('lbl-' + i);
+      const line = document.getElementById('line-' + i);
+      if (i - 1 < activeIdx) {
+        circle.classList.add('completed');
+        circle.classList.remove('active');
+        circle.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>';
+        label.classList.add('active');
+      } else if (i - 1 === activeIdx) {
+        circle.classList.add('active');
+        circle.classList.remove('completed');
+        circle.textContent = i;
+        label.classList.add('active');
+      } else {
+        circle.classList.remove('active', 'completed');
+        circle.textContent = i;
+        label.classList.remove('active');
+      }
+      if (line) {
+        if (i - 1 < activeIdx) {
+          line.classList.add('active');
+        } else {
+          line.classList.remove('active');
+        }
+      }
+    }
+  }
+  window.addEventListener('scroll', updateProgress, { passive: true });
+  updateProgress();
+
+  // ─── Field value helpers ───
+  function val(id) {
+    var el = document.getElementById(id);
+    return el ? el.value.trim() : '';
+  }
+
+  function radioVal(name) {
+    var checked = document.querySelector('input[name="' + name + '"]:checked');
+    return checked ? checked.value : '';
+  }
+
+  function checkboxVals(name) {
+    var checked = document.querySelectorAll('input[name="' + name + '"]:checked');
+    var vals = [];
+    checked.forEach(function(cb) { vals.push(cb.value); });
+    return vals.join(', ');
+  }
+
+  function fileNames(id) {
+    var el = document.getElementById(id);
+    if (!el || !el.files || el.files.length === 0) return '(none)';
+    var names = [];
+    for (var i = 0; i < el.files.length; i++) names.push(el.files[i].name);
+    return names.join(', ');
+  }
+
+  // ─── Validation ───
+  function validateForm() {
+    let valid = true;
+    const requiredFields = [
+      { id: 'business-name', type: 'text' },
+      { id: 'trade-type', type: 'select' },
+      { id: 'contact-name', type: 'text' },
+      { id: 'business-phone', type: 'text' },
+      { id: 'business-email', type: 'email' },
+      { id: 'service-area', type: 'text' },
+      { id: 'hours', type: 'text' },
+      { id: 'services-list', type: 'text' },
+      { id: 'job-value', type: 'select' },
+      { id: 'tier', type: 'select' }
+    ];
+
+    // Clear all errors first
+    document.querySelectorAll('.field--error').forEach(function(f) {
+      f.classList.remove('field--error');
+    });
+
+    let firstError = null;
+
+    requiredFields.forEach(function(f) {
+      var el = document.getElementById(f.id);
+      var fieldDiv = el.closest('.field');
+      if (!el.value.trim()) {
+        fieldDiv.classList.add('field--error');
+        valid = false;
+        if (!firstError) firstError = el;
+      }
+      if (f.type === 'email' && el.value.trim() && !el.value.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) {
+        fieldDiv.classList.add('field--error');
+        valid = false;
+        if (!firstError) firstError = el;
+      }
+    });
+
+    // Radio validation
+    if (!radioVal('emergency')) {
+      var radioField = document.querySelector('input[name="emergency"]').closest('.field');
+      radioField.classList.add('field--error');
+      valid = false;
+      if (!firstError) firstError = document.querySelector('input[name="emergency"]');
+    }
+
+    if (!valid && firstError) {
+      firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+
+    return valid;
+  }
+
+  // ─── Submit ───
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    if (!validateForm()) return;
+
+    var businessName = val('business-name');
+
+    var body = '';
+    body += '═══════════════════════════════════════\n';
+    body += '  FLEXFLOW CLIENT ONBOARDING FORM\n';
+    body += '═══════════════════════════════════════\n\n';
+
+    body += '── SECTION 1: BUSINESS INFO ──\n\n';
+    body += 'Business Name: ' + businessName + '\n';
+    body += 'Trade Type: ' + val('trade-type') + '\n';
+    body += 'Owner/Contact: ' + val('contact-name') + '\n';
+    body += 'Phone: ' + val('business-phone') + '\n';
+    body += 'Email (lead routing): ' + val('business-email') + '\n';
+    body += 'Service Area: ' + val('service-area') + '\n';
+    body += 'Hours: ' + val('hours') + '\n\n';
+
+    body += '── SECTION 2: WEBSITE & BRAND ──\n\n';
+    body += 'Current Website: ' + (val('website-url') || '(none)') + '\n';
+    body += 'Logo File: ' + fileNames('logo-upload') + '\n';
+    body += 'Brand Colors: ' + (val('brand-colors') || '(none)') + '\n';
+    body += 'Work Photos: ' + fileNames('photos-upload') + '\n\n';
+
+    body += '── SECTION 3: SERVICES & JOBS ──\n\n';
+    body += 'Main Services:\n' + val('services-list') + '\n\n';
+    body += 'Emergency Services: ' + radioVal('emergency') + '\n';
+    body += 'Jobs NOT Taken: ' + (val('excluded-jobs') || '(none)') + '\n';
+    body += 'Avg Job Value: ' + val('job-value') + '\n\n';
+
+    body += '── SECTION 4: REVIEWS & TRUST ──\n\n';
+    body += 'Customer Reviews:\n' + (val('reviews') || '(none)') + '\n\n';
+    body += 'Google Business Profile: ' + (val('google-profile') || '(none)') + '\n';
+    body += 'Licenses/Certs: ' + (val('certifications') || '(none)') + '\n\n';
+
+    body += '── SECTION 5: INTAKE PREFERENCES ──\n\n';
+    body += 'Preferred Tier: ' + val('tier') + '\n';
+    body += 'Lead Delivery: ' + (checkboxVals('delivery') || 'Email') + '\n';
+    body += 'Text Alert Phone: ' + (val('text-phone') || '(none)') + '\n';
+    body += 'Special Requests: ' + (val('special-requests') || '(none)') + '\n\n';
+
+    body += '═══════════════════════════════════════\n';
+    body += 'Submitted via FlexFlow Onboarding Form\n';
+    body += '═══════════════════════════════════════';
+
+    var subject = 'FlexFlow Onboarding — ' + businessName;
+    var mailtoUrl = 'mailto:lexflowjbrace@gmail.com'
+      + '?subject=' + encodeURIComponent(subject)
+      + '&body=' + encodeURIComponent(body);
+
+    window.open(mailtoUrl, '_blank');
+
+    // Show thank you
+    form.style.display = 'none';
+    thankYou.classList.add('visible');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+
+    // Update all progress to complete
+    for (let i = 1; i <= 5; i++) {
+      var circle = document.getElementById('prog-' + i);
+      circle.classList.add('completed');
+      circle.classList.remove('active');
+      circle.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>';
+      document.getElementById('lbl-' + i).classList.add('active');
+      var line = document.getElementById('line-' + i);
+      if (line) line.classList.add('active');
+    }
+  });
+
+  // ─── Clear error on input ───
+  form.addEventListener('input', function(e) {
+    var field = e.target.closest('.field');
+    if (field) field.classList.remove('field--error');
+  });
+  form.addEventListener('change', function(e) {
+    var field = e.target.closest('.field');
+    if (field) field.classList.remove('field--error');
+  });
+})();
+</script>
+</body>
+</html>
