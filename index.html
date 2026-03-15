@@ -1,0 +1,1259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FlexFlow — Contractor Lead Intake Systems</title>
+<meta name="description" content="FlexFlow builds contractor lead intake systems and conversion-focused website upgrades for Buffalo-area home service businesses.">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data: https:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; script-src 'self' 'unsafe-inline'; font-src 'self' https://fonts.gstatic.com data:; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self' mailto:; object-src 'none'; upgrade-insecure-requests">
+<meta http-equiv="Referrer-Policy" content="no-referrer">
+<meta http-equiv="X-Content-Type-Options" content="nosniff">
+<meta http-equiv="Cache-Control" content="no-store, max-age=0">
+<meta http-equiv="Pragma" content="no-cache">
+<meta name="robots" content="noindex,nofollow,noarchive,nosnippet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #071a33;
+  --bg-2: #0d2244;
+  --panel: rgba(12, 28, 56, 0.96);
+  --panel-2: rgba(15, 36, 70, 0.98);
+  --line: rgba(255, 255, 255, 0.10);
+  --line-strong: rgba(255, 255, 255, 0.18);
+  --text: #f5f8ff;
+  --muted: #b8c6df;
+  --soft: #89a0c5;
+  --brand: #0c48a1;
+  --brand-2: #1d64d6;
+  --brand-3: #d50f2e;
+  --danger: #ff5f6d;
+  --warn: #ffcc4d;
+  --ok: #42d392;
+  --shadow: 0 22px 60px rgba(0, 0, 0, 0.26);
+  --radius: 22px;
+  --radius-sm: 14px;
+  --max: 1200px;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  font-family: 'Inter', system-ui, sans-serif;
+  background: linear-gradient(180deg, #061326 0%, #0a1e3a 45%, #10284a 100%);
+  color: var(--text);
+}
+a { color: inherit; }
+img { max-width: 100%; display: block; }
+button, input, textarea, select { font: inherit; }
+.hidden { display: none !important; }
+.wrap { width: min(var(--max), calc(100% - 32px)); margin: 0 auto; }
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  backdrop-filter: blur(18px);
+  background: rgba(6, 19, 38, 0.92);
+  border-bottom: 1px solid rgba(148, 163, 184, 0.08);
+}
+.topbar-inner {
+  width: min(var(--max), calc(100% - 32px));
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 78px;
+  gap: 18px;
+}
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  text-decoration: none;
+}
+.brand-badge {
+  width: 44px;
+  height: 44px;
+  border-radius: 14px;
+  display: grid;
+  place-items: center;
+  background: linear-gradient(135deg, rgba(29,100,214,.35), rgba(213,15,46,.20));
+  border: 1px solid rgba(148, 163, 184, 0.16);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.06);
+  overflow: hidden;
+}
+.brand-badge img { width: 100%; height: 100%; object-fit: cover; }
+.brand-fallback {
+  font-size: 20px;
+  font-weight: 900;
+  background: linear-gradient(135deg, var(--brand-2), var(--brand-3));
+  -webkit-background-clip: text;
+  color: transparent;
+}
+.brand-copy strong { display: block; font-size: 18px; letter-spacing: -0.03em; }
+.brand-copy span { color: var(--muted); font-size: 12px; }
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.nav a, .nav button {
+  text-decoration: none;
+  color: var(--muted);
+  background: transparent;
+  border: 1px solid transparent;
+  padding: 10px 14px;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: .18s ease;
+}
+.nav a:hover, .nav button:hover, .nav a.active {
+  color: var(--text);
+  border-color: rgba(148,163,184,.16);
+  background: rgba(255,255,255,.04);
+}
+.cta-btn {
+  border: none;
+  color: #031019 !important;
+  background: linear-gradient(135deg, var(--brand), var(--brand-2)) !important;
+  font-weight: 700;
+  box-shadow: 0 10px 30px rgba(213,15,46,.20);
+}
+.section { display: none; }
+.section.active { display: block; }
+.hero {
+  position: relative;
+  overflow: hidden;
+  padding: 72px 0 34px;
+}
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1.08fr .92fr;
+  gap: 28px;
+  align-items: center;
+}
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #dbeafe;
+  border: 1px solid rgba(255,255,255,.12);
+  background: rgba(29,100,214,.14);
+  border-radius: 999px;
+  padding: 8px 12px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+}
+.hero h1 {
+  margin: 16px 0 16px;
+  font-size: clamp(42px, 7vw, 78px);
+  line-height: .98;
+  letter-spacing: -0.06em;
+  max-width: 11ch;
+}
+.gradient-text {
+  background: linear-gradient(135deg, #ffffff 10%, #dbeafe 42%, #ff8a9a 92%);
+  -webkit-background-clip: text;
+  color: transparent;
+}
+.hero p {
+  margin: 0 0 24px;
+  max-width: 60ch;
+  color: var(--muted);
+  font-size: 18px;
+}
+.hero-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 26px;
+}
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 48px;
+  padding: 0 18px;
+  border-radius: 16px;
+  border: 1px solid var(--line);
+  background: rgba(255,255,255,.03);
+  color: var(--text);
+  text-decoration: none;
+  font-weight: 700;
+  transition: .18s ease;
+}
+.btn:hover { transform: translateY(-1px); border-color: rgba(148,163,184,.28); background: rgba(255,255,255,.05); }
+.btn.primary {
+  border: none;
+  color: #051018;
+  background: linear-gradient(135deg, var(--brand-2), var(--brand-3));
+  box-shadow: 0 14px 36px rgba(56,189,248,.2);
+}
+.hero-points {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0,1fr));
+  gap: 12px;
+}
+.hero-point, .glass-card, .sample-card, .kpi, .portal-card, .chat-shell, .about-card, .tab-card {
+  background: linear-gradient(180deg, rgba(15, 36, 70, 0.98), rgba(10, 25, 50, 0.98));
+  border: 1px solid rgba(148, 163, 184, 0.14);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+.hero-point { padding: 16px; }
+.hero-point strong { display: block; margin-bottom: 6px; }
+.hero-point span { color: var(--muted); font-size: 14px; }
+.visual-card {
+  padding: 24px;
+  position: relative;
+}
+.visual-card::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  background: linear-gradient(130deg, rgba(29,100,214,.22), rgba(213,15,46,.16), transparent 55%, rgba(29,100,214,.10));
+  z-index: -1;
+}
+.visual-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+.kpi { padding: 18px; }
+.kpi small { color: var(--soft); display: block; margin-bottom: 8px; text-transform: uppercase; letter-spacing: .08em; font-weight: 700; }
+.kpi strong { font-size: 32px; letter-spacing: -0.06em; display: block; }
+.kpi p { margin: 8px 0 0; color: var(--muted); font-size: 14px; }
+.showcase {
+  padding: 24px 0 84px;
+}
+.section-header {
+  margin-bottom: 24px;
+}
+.section-header h2 {
+  margin: 0 0 8px;
+  font-size: clamp(28px, 4vw, 42px);
+  letter-spacing: -0.05em;
+}
+.section-header p { margin: 0; color: var(--muted); max-width: 70ch; }
+.sample-grid, .about-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
+.sample-card, .about-card { padding: 22px; }
+.sample-card h3, .about-card h3 { margin: 0 0 10px; font-size: 20px; }
+.sample-card p, .about-card p { margin: 0 0 16px; color: var(--muted); }
+.feature-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+.feature-list li {
+  color: #d6e4f7;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 14px;
+}
+.dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 999px;
+  margin-top: 6px;
+  background: linear-gradient(135deg, var(--brand-2), var(--brand-3));
+  flex: 0 0 auto;
+}
+.demo-section {
+  padding: 0 0 88px;
+}
+.demo-grid {
+  display: grid;
+  grid-template-columns: .95fr 1.05fr;
+  gap: 22px;
+  align-items: start;
+}
+.demo-copy, .portal-card, .tab-card {
+  padding: 24px;
+}
+.demo-copy p { color: var(--muted); }
+.chat-shell {
+  padding: 18px;
+}
+.chat-head {
+  padding: 18px 18px 14px;
+  border-radius: 18px;
+  background: linear-gradient(135deg, rgba(56,189,248,.16), rgba(139,92,246,.18));
+  margin-bottom: 14px;
+}
+.chat-head strong { display: block; font-size: 18px; }
+.chat-head span { color: var(--muted); font-size: 13px; }
+.chat-messages {
+  height: 420px;
+  overflow-y: auto;
+  padding: 8px 4px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.msg {
+  max-width: 84%;
+  padding: 12px 14px;
+  border-radius: 18px;
+  line-height: 1.45;
+  font-size: 14px;
+}
+.msg.bot {
+  align-self: flex-start;
+  background: rgba(255,255,255,.06);
+  border: 1px solid rgba(148,163,184,.12);
+}
+.msg.user {
+  align-self: flex-end;
+  background: linear-gradient(135deg, rgba(94,234,212,.18), rgba(56,189,248,.2));
+  border: 1px solid rgba(255,255,255,.12);
+}
+.chat-form {
+  display: flex;
+  gap: 10px;
+  margin-top: 8px;
+}
+.chat-form input {
+  flex: 1;
+  min-height: 48px;
+  border-radius: 16px;
+  border: 1px solid rgba(148,163,184,.16);
+  background: rgba(255,255,255,.04);
+  color: var(--text);
+  padding: 0 16px;
+  outline: none;
+}
+.chat-form button {
+  min-width: 52px;
+  border-radius: 16px;
+  border: none;
+  background: linear-gradient(135deg, var(--brand-2), var(--brand-3));
+  color: #051018;
+  font-weight: 800;
+  cursor: pointer;
+}
+.disclaimer {
+  margin-top: 12px;
+  color: var(--soft);
+  font-size: 12px;
+}
+.portal-wrap { padding: 34px 0 88px; }
+.portal-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 18px;
+  flex-wrap: wrap;
+}
+.portal-top h2 { margin: 0; font-size: clamp(28px, 4vw, 42px); letter-spacing: -0.05em; }
+.portal-tabs {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 18px;
+}
+.tab-btn {
+  min-height: 42px;
+  padding: 0 14px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: rgba(255,255,255,.04);
+  color: var(--muted);
+  cursor: pointer;
+}
+.tab-btn.active {
+  color: var(--text);
+  border-color: rgba(94,234,212,.28);
+  background: rgba(29,100,214,.14);
+}
+.portal-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; margin-bottom: 18px; }
+.portal-card h3, .tab-card h3 { margin: 0 0 8px; }
+.portal-card p, .tab-card p { margin: 0; color: var(--muted); }
+.portal-card strong { display: block; font-size: 30px; margin-top: 14px; letter-spacing: -0.05em; }
+.table-shell {
+  overflow: auto;
+  border-radius: 18px;
+  border: 1px solid rgba(148,163,184,.12);
+}
+.table-shell table { width: 100%; border-collapse: collapse; min-width: 900px; }
+.table-shell th, .table-shell td { padding: 14px 14px; text-align: left; border-bottom: 1px solid rgba(148,163,184,.08); }
+.table-shell th { font-size: 12px; color: var(--soft); text-transform: uppercase; letter-spacing: .08em; }
+.table-shell td { font-size: 14px; }
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 700;
+}
+.tier-a { background: rgba(248,113,113,.14); color: #fecaca; }
+.tier-b { background: rgba(251,191,36,.14); color: #fde68a; }
+.tier-c { background: rgba(74,222,128,.14); color: #bbf7d0; }
+.trade-HVAC { background: rgba(56,189,248,.14); color: #bae6fd; }
+.trade-Plumbing { background: rgba(94,234,212,.14); color: #ccfbf1; }
+.trade-Roofing { background: rgba(249,115,22,.16); color: #fed7aa; }
+.trade-Electrical { background: rgba(251,191,36,.14); color: #fde68a; }
+.trade-General { background: rgba(139,92,246,.14); color: #ddd6fe; }
+.score-track {
+  width: 90px;
+  height: 8px;
+  border-radius: 999px;
+  background: rgba(255,255,255,.08);
+  overflow: hidden;
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 10px;
+}
+.score-fill { height: 100%; }
+.search-row {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+  flex-wrap: wrap;
+}
+.search-row input {
+  min-height: 44px;
+  min-width: 280px;
+  border-radius: 14px;
+  border: 1px solid rgba(148,163,184,.16);
+  background: rgba(255,255,255,.04);
+  color: var(--text);
+  padding: 0 14px;
+}
+.inline-actions { display: flex; gap: 10px; flex-wrap: wrap; }
+.password-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 80;
+  display: none;
+  place-items: center;
+  background: rgba(3, 7, 14, 0.78);
+  backdrop-filter: blur(10px);
+  padding: 20px;
+}
+.password-overlay.open { display: grid; }
+.password-card {
+  width: min(480px, 100%);
+  padding: 28px;
+  border-radius: 24px;
+  background: linear-gradient(180deg, rgba(15,24,43,.98), rgba(8,14,26,.98));
+  border: 1px solid rgba(148,163,184,.16);
+  box-shadow: var(--shadow);
+}
+.password-card h3 { margin: 0 0 10px; font-size: 28px; letter-spacing: -0.04em; }
+.password-card p { margin: 0 0 18px; color: var(--muted); }
+.password-card input {
+  width: 100%;
+  min-height: 52px;
+  border-radius: 16px;
+  border: 1px solid rgba(148,163,184,.16);
+  background: rgba(255,255,255,.04);
+  color: var(--text);
+  padding: 0 16px;
+  margin-bottom: 12px;
+}
+.password-error { color: #fca5a5; min-height: 20px; font-size: 14px; }
+.portal-note {
+  color: var(--soft);
+  font-size: 13px;
+  margin-top: 12px;
+}
+.footer {
+  border-top: 1px solid rgba(148,163,184,.08);
+  color: var(--soft);
+  padding: 28px 0 50px;
+  font-size: 14px;
+}
+.footer-inner {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+@media (max-width: 1050px) {
+  .hero-grid, .demo-grid { grid-template-columns: 1fr; }
+  .sample-grid, .about-grid { grid-template-columns: 1fr 1fr; }
+  .portal-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 720px) {
+  .topbar-inner { align-items: flex-start; padding: 12px 0; }
+  .nav { width: 100%; }
+  .hero-points, .sample-grid, .about-grid, .portal-grid { grid-template-columns: 1fr; }
+  .chat-messages { height: 360px; }
+  .search-row input { min-width: 100%; width: 100%; }
+}
+</style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="brand" href="#home">
+        <span class="brand-badge">
+          <img src="assets/logos/flexflow-logo.png" alt="FlexFlow logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+          <span class="brand-fallback" style="display:none;">F</span>
+        </span>
+        <span class="brand-copy">
+          <strong>FlexFlow</strong>
+          <span>Contractor lead intake systems</span>
+        </span>
+      </a>
+      <nav class="nav">
+        <a href="#home" data-route="home">Home</a>
+        <a href="#demo" data-route="demo">Live Demo</a>
+        <a href="#capabilities" data-route="capabilities">What We Build</a>
+        <button id="portalLink">Secure Portal</button>
+        <a class="cta-btn" href="#demo">Try the Demo</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section id="homeSection" class="section active">
+      <div class="hero">
+        <div class="wrap hero-grid">
+          <div>
+            <span class="eyebrow">Buffalo-first · contractor-focused</span>
+            <h1><span class="gradient-text">Lead intake that actually captures the job.</span></h1>
+            <p>FlexFlow installs trade-specific intake systems and conversion-focused website upgrades for home-service businesses. The goal is simple: fewer missed calls, more structured job requests, and a cleaner way for customers to explain what they need.</p>
+            <div class="hero-actions">
+              <a class="btn primary" href="#demo">Open live chatbot demo</a>
+              <a class="btn" href="#capabilities">See sample deliverables</a>
+            </div>
+            <div class="hero-points">
+              <div class="hero-point"><strong>After-hours capture</strong><span>Turn midnight emergencies and weekend quote requests into structured leads.</span></div>
+              <div class="hero-point"><strong>Trade-specific flows</strong><span>Roofing, plumbing, HVAC, electrical, and other contractor-ready intake paths.</span></div>
+              <div class="hero-point"><strong>Faster close rate</strong><span>Get cleaner info up front so callbacks are faster and more qualified.</span></div>
+            </div>
+          </div>
+          <div class="visual-card">
+            <div class="visual-grid">
+              <div class="kpi"><small>Lead capture lift</small><strong>24/7</strong><p>Guided intake flows work when the office is closed.</p></div>
+              <div class="kpi"><small>Delivery model</small><strong>Template-based</strong><p>Fast installs, lower complexity, cleaner fulfillment.</p></div>
+              <div class="kpi"><small>Core offer</small><strong>Intake + conversion</strong><p>Not bloated software. Just lead capture that helps contractors win more jobs.</p></div>
+              <div class="kpi"><small>Primary market</small><strong>Buffalo, NY</strong><p>Built for local home-service companies and nearby suburbs.</p></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="showcase" id="capabilitiesAnchor">
+        <div class="wrap">
+          <div class="section-header">
+            <h2>What FlexFlow actually does</h2>
+            <p>This is not a generic AI toy. FlexFlow is a contractor-focused digital conversion service built around guided intake, better contact flow, and cleaner lead routing.</p>
+          </div>
+          <div class="sample-grid">
+            <article class="sample-card">
+              <h3>Intake Install</h3>
+              <p>For contractors with an okay site but weak intake.</p>
+              <ul class="feature-list">
+                <li><span class="dot"></span>Trade-specific lead capture widget or page</li>
+                <li><span class="dot"></span>Cleaner call, text, and quote-request CTAs</li>
+                <li><span class="dot"></span>Mobile contact-flow cleanup</li>
+                <li><span class="dot"></span>Lead routing directly to owner email</li>
+              </ul>
+            </article>
+            <article class="sample-card">
+              <h3>Conversion Upgrade</h3>
+              <p>For websites that look dated or bury the contact path.</p>
+              <ul class="feature-list">
+                <li><span class="dot"></span>Homepage and contact-page refresh</li>
+                <li><span class="dot"></span>Better service presentation and trust signals</li>
+                <li><span class="dot"></span>Quote-request funnel and clearer structure</li>
+                <li><span class="dot"></span>Professional presentation without agency bloat</li>
+              </ul>
+            </article>
+            <article class="sample-card">
+              <h3>Full Contractor Lead System</h3>
+              <p>For very weak sites or businesses with no usable web presence.</p>
+              <ul class="feature-list">
+                <li><span class="dot"></span>Mini-site or major refresh built around lead capture</li>
+                <li><span class="dot"></span>Service-area and trade-specific structure</li>
+                <li><span class="dot"></span>Guided intake, routing, and ongoing support</li>
+                <li><span class="dot"></span>Simple delivery a solo operator can maintain</li>
+              </ul>
+            </article>
+          </div>
+        </div>
+      </div>
+
+      <div class="showcase">
+        <div class="wrap">
+          <div class="section-header">
+            <h2>About FlexFlow</h2>
+            <p>FlexFlow exists to help local contractors look more professional online and capture more job requests without promising fake “AI intelligence” or bloated custom systems.</p>
+          </div>
+          <div class="about-grid">
+            <article class="about-card">
+              <h3>Built for contractors</h3>
+              <p>The product is designed around how real home-service businesses operate: urgent calls, missed voicemails, inconsistent web inquiries, and limited time.</p>
+            </article>
+            <article class="about-card">
+              <h3>Focused on conversion</h3>
+              <p>Every page, widget, and intake flow is meant to make it easier for a customer to explain the job and easier for the contractor to respond.</p>
+            </article>
+            <article class="about-card">
+              <h3>Kept intentionally lean</h3>
+              <p>No giant CRM promises. No fake automation empire. Just a service that helps contractors capture and organize more job inquiries, especially after hours.</p>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="demoSection" class="section">
+      <div class="wrap demo-section">
+        <div class="section-header">
+          <h2>Live demo: guided contractor intake</h2>
+          <p>This demo is built to act like a real intake assistant. It stores what the customer already said, asks only for the next missing detail, and stops repeating itself.</p>
+        </div>
+        <div class="demo-grid">
+          <div class="demo-copy glass-card">
+            <h3>Why this feels better than a generic chatbot</h3>
+            <p>Instead of spitting out canned paragraphs, the demo bot moves through a structured intake flow. It remembers the user’s name, phone, address, urgency, and issue type, then asks for only the missing pieces.</p>
+            <ul class="feature-list">
+              <li><span class="dot"></span>Remembers captured details instead of repeating the same question</li>
+              <li><span class="dot"></span>Separates emergency requests from routine quote requests</li>
+              <li><span class="dot"></span>Collects structured intake data contractors can actually use</li>
+              <li><span class="dot"></span>Ends with a clean summary the business could route by email</li>
+            </ul>
+            <p style="margin-top:18px;color:var(--soft);font-size:14px;">Suggested test prompt: “My furnace died at 14 Main Street in Buffalo. My name is John and my phone number is 716-555-1111.”</p>
+          </div>
+          <div class="chat-shell">
+            <div class="chat-head">
+              <strong>FlexFlow Intake Demo</strong>
+              <span>Sample customer intake experience for contractors</span>
+            </div>
+            <div class="chat-messages" id="publicChatMessages"></div>
+            <form class="chat-form" id="publicChatForm">
+              <input id="publicChatInput" type="text" autocomplete="off" placeholder="Describe the problem, project, or service request...">
+              <button type="submit">→</button>
+            </form>
+            <div class="disclaimer">This demo provides general information and intake guidance only. It does not promise a specific outcome or replace a real estimate or service call.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="capabilitiesSection" class="section">
+      <div class="wrap showcase">
+        <div class="section-header">
+          <h2>Sample business outcomes</h2>
+          <p>These are the kinds of assets FlexFlow uses to help businesses look more credible and capture more job requests.</p>
+        </div>
+        <div class="sample-grid">
+          <article class="sample-card">
+            <h3>Modern landing page refresh</h3>
+            <p>Service-first layouts with stronger calls to action, cleaner mobile presentation, and more obvious quote-request paths.</p>
+            <ul class="feature-list">
+              <li><span class="dot"></span>Cleaner service hierarchy</li>
+              <li><span class="dot"></span>Trust signals and review blocks</li>
+              <li><span class="dot"></span>Header CTAs for call, text, and request quote</li>
+            </ul>
+          </article>
+          <article class="sample-card">
+            <h3>Guided intake for higher-quality leads</h3>
+            <p>Structured flows that ask what happened, where, how urgent it is, and when the contractor should call back.</p>
+            <ul class="feature-list">
+              <li><span class="dot"></span>Emergency vs routine triage</li>
+              <li><span class="dot"></span>Issue type and location capture</li>
+              <li><span class="dot"></span>Simple owner-email routing</li>
+            </ul>
+          </article>
+          <article class="sample-card">
+            <h3>Repeatable fulfillment</h3>
+            <p>Templates and reusable workflows keep delivery fast enough to actually run as a real business.</p>
+            <ul class="feature-list">
+              <li><span class="dot"></span>Trade-specific setup options</li>
+              <li><span class="dot"></span>Low-maintenance monthly support</li>
+              <li><span class="dot"></span>No complex custom backend required</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="portalSection" class="section">
+      <div class="wrap portal-wrap">
+        <div class="portal-top">
+          <div>
+            <h2>Secure internal portal</h2>
+            <p style="margin:8px 0 0;color:var(--muted);">Leads, outreach targets, and onboarding access stay behind a password gate.</p>
+          </div>
+          <div class="inline-actions">
+            <button class="btn" id="lockPortalBtn">Lock portal</button>
+            <a class="btn primary" href="onboarding.html" target="_blank" rel="noopener">Open onboarding form</a>
+          </div>
+        </div>
+
+        <div class="portal-tabs">
+          <button class="tab-btn active" data-tab="leads">Leads Dashboard</button>
+          <button class="tab-btn" data-tab="onboarding">Onboarding</button>
+        </div>
+
+        <div class="tab-card" id="tab-leads">
+          <div class="portal-grid" id="portalStats"></div>
+          <div class="search-row">
+            <input id="leadSearch" type="text" placeholder="Search business name, trade, or phone...">
+            <div class="inline-actions">
+              <button class="tab-btn active" data-filter="all">All</button>
+              <button class="tab-btn" data-filter="A">Tier 3</button>
+              <button class="tab-btn" data-filter="B">Tier 2</button>
+              <button class="tab-btn" data-filter="C">Tier 1</button>
+            </div>
+          </div>
+          <div class="table-shell">
+            <table>
+              <thead>
+                <tr>
+                  <th>Business</th>
+                  <th>Trade</th>
+                  <th>Score</th>
+                  <th>Tier</th>
+                  <th>Package</th>
+                  <th>Email</th>
+                </tr>
+              </thead>
+              <tbody id="leadsTableBody"></tbody>
+            </table>
+          </div>
+          <div class="portal-note">Front-end password gating is fine for a lightweight demo portal, but it is not true enterprise security. Good enough for now; not enough for sensitive production data.</div>
+        </div>
+
+        <div class="tab-card hidden" id="tab-onboarding">
+          <h3>Client onboarding</h3>
+          <p>Use the onboarding form after a sale closes to collect logo, hours, services, service area, routing email, reviews, and preferred package.</p>
+          <div class="inline-actions" style="margin:18px 0 20px;">
+            <a class="btn primary" href="onboarding.html" target="_blank" rel="noopener">Launch onboarding form</a>
+          </div>
+          <iframe id="onboardingFrame" data-src="onboarding.html" title="FlexFlow onboarding form preview" style="width:100%;min-height:780px;border:1px solid rgba(148,163,184,.14);border-radius:18px;background:#fff;"></iframe>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap footer-inner">
+      <span>FlexFlow · Contractor-focused lead intake and website conversion systems</span>
+      <span>Buffalo, NY</span>
+    </div>
+  </footer>
+
+  <div class="password-overlay" id="passwordOverlay">
+    <div class="password-card">
+      <h3>Secure portal access</h3>
+      <p>Enter the portal password to view leads, outreach targets, and the internal onboarding section.</p>
+      <form id="passwordForm">
+        <input id="passwordInput" type="password" placeholder="Enter password">
+        <button class="btn primary" type="submit" style="width:100%;">Unlock portal</button>
+      </form>
+      <div class="password-error" id="passwordError"></div>
+      <div class="portal-note">This static version adds lockout, inactivity timeout, hidden internal rendering, and basic browser hardening, but it is still not true server-side security.</div>
+    </div>
+  </div>
+
+<script>
+const PORTAL_PASSWORD = 'Tachanka1$';
+
+const CONTRACTORS_B64 = 'W3siaWQiOiIxIiwibmFtZSI6IkdyZWVuU3RhciBIb21lIFNlcnZpY2VzIiwidHJhZGUiOiJIVkFDIiwic2NvcmUiOjYyLCJ3ZWJzaXRlIjoiaHR0cHM6Ly9ibHVlc3RhcmhzLmNvbS8iLCJlbWFpbCI6IiIsInBob25lIjoiKDcxNikgMzYyLTIzMTAifSx7ImlkIjoiMiIsIm5hbWUiOiJJc2FhYyBIZWF0aW5nICYgQWlyIENvbmRpdGlvbmluZyIsInRyYWRlIjoiSFZBQyIsInNjb3JlIjoxOCwid2Vic2l0ZSI6IiIsImVtYWlsIjoiIiwicGhvbmUiOiIoNzE2KSA2ODUtMTQwMCJ9LHsiaWQiOiIzIiwibmFtZSI6Ilplbm5lciAmIFJpdHRlciBIZWF0aW5nICYgQ29vbGluZyIsInRyYWRlIjoiSFZBQyIsInNjb3JlIjo1OCwid2Vic2l0ZSI6Imh0dHBzOi8vemVubmVyYW5kcml0dGVyLmNvbSIsImVtYWlsIjoiIiwicGhvbmUiOiIoNzE2KSA4MzMtMjQ2MyJ9LHsiaWQiOiI0IiwibmFtZSI6IlQtTWFyayBQbHVtYmluZywgSGVhdGluZyAmIEVsZWN0cmljIiwidHJhZGUiOiJIVkFDIiwic2NvcmUiOjY1LCJ3ZWJzaXRlIjoiaHR0cHM6Ly90LW1hcmtwbHVtYmluZy5jb20iLCJlbWFpbCI6IiIsInBob25lIjoiKDcxNikgMjE5LTE2MTUifSx7ImlkIjoiNSIsIm5hbWUiOiJSZWltZXIgSG9tZSBTZXJ2aWNlcyIsInRyYWRlIjoiSFZBQyIsInNjb3JlIjozOCwid2Vic2l0ZSI6IiIsImVtYWlsIjoiIiwicGhvbmUiOiIoNzE2KSA2OTQtODUyNCJ9LHsiaWQiOiI2IiwibmFtZSI6IkNlbGxpbm8gUGx1bWJpbmciLCJ0cmFkZSI6IlBsdW1iaW5nIiwic2NvcmUiOjcwLCJ3ZWJzaXRlIjoiaHR0cHM6Ly9jZWxsaW5vcGx1bWJpbmcuY29tIiwiZW1haWwiOiIiLCJwaG9uZSI6Iig3MTYpIDgyMi03NTUxIn0seyJpZCI6IjciLCJuYW1lIjoiUm95J3MgUGx1bWJpbmcgJiBIZWF0aW5nIiwidHJhZGUiOiJQbHVtYmluZyIsInNjb3JlIjoyMCwid2Vic2l0ZSI6IiIsImVtYWlsIjoibWFkQGp1c3RjYWxscm95cy5jb20iLCJwaG9uZSI6Iig3MTYpIDM2Mi00NjAwIn0seyJpZCI6IjgiLCJuYW1lIjoiRnJhbmsncyBNci4gUGx1bWJlciIsInRyYWRlIjoiUGx1bWJpbmciLCJzY29yZSI6NDgsIndlYnNpdGUiOiIiLCJlbWFpbCI6ImVyeWFuQGNhbGxtcnBsdW1iZXIuY29tIiwicGhvbmUiOiIoNzE2KSAyMjEtODY4NCJ9LHsiaWQiOiI5IiwibmFtZSI6IkhlYXR3YXZlIEhlYXRpbmcgJiBDb29saW5nIiwidHJhZGUiOiJIVkFDIiwic2NvcmUiOjM1LCJ3ZWJzaXRlIjoiIiwiZW1haWwiOiJod2FjY291bnRpbmdAaGVhdHdhdmV3bnkuY29tIiwicGhvbmUiOiIoNzE2KSA4OTEtOTI4MyJ9LHsiaWQiOiIxMCIsIm5hbWUiOiJIZXJ0ZWwgUGx1bWJpbmcgJiBIZWF0aW5nIiwidHJhZGUiOiJQbHVtYmluZyIsInNjb3JlIjoxNCwid2Vic2l0ZSI6IiIsImVtYWlsIjoiaGVydGVsaGFyZHdhcmVAZ21haWwuY29tIiwicGhvbmUiOiIoNzE2KSA4NzUtMzkwMCJ9LHsiaWQiOiIxMSIsIm5hbWUiOiJSaG9kZXMgUGx1bWJpbmcsIEhlYXRpbmcgJiBDb29saW5nIiwidHJhZGUiOiJQbHVtYmluZyIsInNjb3JlIjoxMCwid2Vic2l0ZSI6IiIsImVtYWlsIjoicmhvZGVzcGx1bWJpbmdueUBnbWFpbC5jb20iLCJwaG9uZSI6Iig3MTYpIDI4MS05ODY3In0seyJpZCI6IjEyIiwibmFtZSI6IlJpdHRlciAmIFNlbnRyeSBQbHVtYmluZyIsInRyYWRlIjoiUGx1bWJpbmciLCJzY29yZSI6MTYsIndlYnNpdGUiOiIiLCJlbWFpbCI6IiIsInBob25lIjoiKDcxNikgODk0LTQxODEifSx7ImlkIjoiMTMiLCJuYW1lIjoiSmltIEFuZG8gUGx1bWJpbmciLCJ0cmFkZSI6IlBsdW1iaW5nIiwic2NvcmUiOjEyLCJ3ZWJzaXRlIjoiIiwiZW1haWwiOiIiLCJwaG9uZSI6Iig3MTYpIDc3MS0zNjAxIn0seyJpZCI6IjE0IiwibmFtZSI6IjcxNiBNb3ZlbWVudCBJbmMuIiwidHJhZGUiOiJSb29maW5nIiwic2NvcmUiOjAsIndlYnNpdGUiOiIiLCJlbWFpbCI6IjcxNm1vdmVtZW50bGxjQGdtYWlsLmNvbSIsInBob25lIjoiKDcxNikgMzgyLTg4MzMifSx7ImlkIjoiMTUiLCJuYW1lIjoiQWxsIEFjY2VzcyBCdWlsZGVycyBMTEMiLCJ0cmFkZSI6IlJvb2ZpbmciLCJzY29yZSI6MCwid2Vic2l0ZSI6IiIsImVtYWlsIjoiTG9yaWFubi5hbGxhY2Nlc3NidWlsZGVyc0BnbWFpbC5jb20iLCJwaG9uZSI6Iig3MTYpIDc3MC02NTYwIn0seyJpZCI6IjE2IiwibmFtZSI6IkFtaGVyc3QgUm9vZmluZyBXTlkiLCJ0cmFkZSI6IlJvb2ZpbmciLCJzY29yZSI6MCwid2Vic2l0ZSI6IiIsImVtYWlsIjoiYW1oZXJzdHJvb2Zpbmdjb0BnbWFpbC5jb20iLCJwaG9uZSI6Iig3MTYpIDMwNC00NTU0In0seyJpZCI6IjE3IiwibmFtZSI6IkJlc3JvaSBSb29maW5nICYgU2lkaW5nIiwidHJhZGUiOiJSb29maW5nIiwic2NvcmUiOjAsIndlYnNpdGUiOiIiLCJlbWFpbCI6Implc3NAYmVzcm9pcm9vZmluZy5jb20iLCJwaG9uZSI6Iig3MTYpIDY4NC0wMzU1In0seyJpZCI6IjE4IiwibmFtZSI6IkJsYWNrIFJvY2sgUm9vZmluZyIsInRyYWRlIjoiUm9vZmluZyIsInNjb3JlIjowLCJ3ZWJzaXRlIjoiIiwiZW1haWwiOiJibGFja3JvY2tyb29maW5nQHlhaG9vLmNvbSIsInBob25lIjoiKDcxNikgNTcwLTg1NjAifSx7ImlkIjoiMTkiLCJuYW1lIjoiQnVmZmFsbydzIEJlc3QgUm9vZmluZyIsInRyYWRlIjoiUm9vZmluZyIsInNjb3JlIjoyNSwid2Vic2l0ZSI6IiIsImVtYWlsIjoib2ZmaWNlQGJ1ZmZhbG9zYmVzdHJvb2ZpbmcuY29tIiwicGhvbmUiOiIoNzE2KSAyNzYtMzY3MyJ9LHsiaWQiOiIyMCIsIm5hbWUiOiJUdXJrTWFzdGVycyBSb29maW5nIFN5c3RlbXMiLCJ0cmFkZSI6IlJvb2ZpbmciLCJzY29yZSI6MCwid2Vic2l0ZSI6IiIsImVtYWlsIjoicm9vZmluZ2FuZGd1dHRlcnNAZ21haWwuY29tIiwicGhvbmUiOiIoNzE2KSA0NDQtNjU0MyJ9LHsiaWQiOiIyMSIsIm5hbWUiOiJEeW5hc3R5IERlbW9saXRpb24gYW5kIFJvb2ZpbmciLCJ0cmFkZSI6IlJvb2ZpbmciLCJzY29yZSI6OCwid2Vic2l0ZSI6IiIsImVtYWlsIjoiYnVzZGV2QGR5bmFzdHlkZW1vbGxjLmNvbSIsInBob25lIjoiKDcxNikgNTk4LTQyNzkifSx7ImlkIjoiMjIiLCJuYW1lIjoiQnVmZmFsbyBSb29maW5nIiwidHJhZGUiOiJSb29maW5nIiwic2NvcmUiOjQyLCJ3ZWJzaXRlIjoiIiwiZW1haWwiOiJqYWNvYmVpc3NAYnVmZmFsb3Jvb2ZpbmcuY29tIiwicGhvbmUiOiIoNzE2KSA4MzAtMzMyNiJ9LHsiaWQiOiIyMyIsIm5hbWUiOiJNSk0gRWxlY3RyaWMgQ29uc3RydWN0aW9uIiwidHJhZGUiOiJFbGVjdHJpY2FsIiwic2NvcmUiOjAsIndlYnNpdGUiOiIiLCJlbWFpbCI6ImJ1ZmZhbG9tam1AZ21haWwuY29tIiwicGhvbmUiOiIoNzE2KSA0MjctNjc2MiJ9LHsiaWQiOiIyNCIsIm5hbWUiOiJQcmVmZXJyZWQgRWxlY3RyaWNhbCBTZXJ2aWNlcyBvZiBXTlkiLCJ0cmFkZSI6IkVsZWN0cmljYWwiLCJzY29yZSI6MTgsIndlYnNpdGUiOiIiLCJlbWFpbCI6ImluZm9AcHJlZmVycmVkZWxlY3RyaWNhbHdueS5jb20iLCJwaG9uZSI6Iig3MTYpIDMwNC04MDE1In0seyJpZCI6IjI1IiwibmFtZSI6IkFjZSBIYW5keW1hbiBTZXJ2aWNlcyBCdWZmYWxvIiwidHJhZGUiOiJHZW5lcmFsIiwic2NvcmUiOjU4LCJ3ZWJzaXRlIjoiIiwiZW1haWwiOiJidWZmYWxvc291dGh0b3duc0BhY2VoYW5keW1hbnNlcnZpY2VzLmNvbSIsInBob25lIjoiKDcxNikgNDI3LTA0MjcifSx7ImlkIjoiMjYiLCJuYW1lIjoiRGFuYWJ5IENvbnN0cnVjdGlvbiIsInRyYWRlIjoiR2VuZXJhbCIsInNjb3JlIjowLCJ3ZWJzaXRlIjoiIiwiZW1haWwiOiJEYW5hYnljb25zdHJ1Y3Rpb24xMEB5YWhvby5jb20iLCJwaG9uZSI6Iig3MTYpIDg2NC0xMDUyIn0seyJpZCI6IjI3IiwibmFtZSI6IkNhdGFsYW5vIENvbnRyYWN0aW5nIiwidHJhZGUiOiJHZW5lcmFsIiwic2NvcmUiOjAsIndlYnNpdGUiOiIiLCJlbWFpbCI6ImdyZWcuY2F0YWxhbm9jb250cmFjdGluZ0BnbWFpbC5jb20iLCJwaG9uZSI6Iig3MTYpIDg5Ni01MDMyIn0seyJpZCI6IjI4IiwibmFtZSI6IlJ5bGVlIFJlbm92YXRpb24gTExDIiwidHJhZGUiOiJHZW5lcmFsIiwic2NvcmUiOjAsIndlYnNpdGUiOiIiLCJlbWFpbCI6InJ5bGVlcmVub3ZhdGlvbnNAZ21haWwuY29tIiwicGhvbmUiOiIoNzE2KSAyNDEtODAwMyJ9LHsiaWQiOiIyOSIsIm5hbWUiOiJTdXJldHkgUmVtb2RlbGluZyBHcm91cCIsInRyYWRlIjoiR2VuZXJhbCIsInNjb3JlIjowLCJ3ZWJzaXRlIjoiIiwiZW1haWwiOiJzdXJldHlyZW1vZGVsaW5nZ3JvdXBAeWFob28uY29tIiwicGhvbmUiOiIoNzE2KSA4OTMtMjIwMyJ9LHsiaWQiOiIzMCIsIm5hbWUiOiJXTlkgR2FsYm8gR3JvdXAiLCJ0cmFkZSI6IkdlbmVyYWwiLCJzY29yZSI6MzIsIndlYnNpdGUiOiIiLCJlbWFpbCI6ImJyYW5kb25AZ2FsYm9ncm91cC5jb20iLCJwaG9uZSI6Iig3MTYpIDY2Mi0xMDQ0In0seyJpZCI6IjMxIiwibmFtZSI6IkJ1aWxkIE1hY2FsdXNvIiwidHJhZGUiOiJHZW5lcmFsIiwic2NvcmUiOjI4LCJ3ZWJzaXRlIjoiIiwiZW1haWwiOiJtaWtlQGJ1aWxkbWFjLnVzIiwicGhvbmUiOiIoNzE2KSA2MjYtNjAwMCJ9LHsiaWQiOiIzMiIsIm5hbWUiOiJTdGF0ZWx5IEJ1aWxkZXJzIiwidHJhZGUiOiJHZW5lcmFsIiwic2NvcmUiOjU1LCJ3ZWJzaXRlIjoiIiwiZW1haWwiOiJqbmV0dGluYUBzdGF0ZWx5YnVpbGRlcnMuY29tIiwicGhvbmUiOiIoNzE2KSA3MTQtNjcwMCJ9LHsiaWQiOiIzMyIsIm5hbWUiOiJTb3V0aGVybiBSb290eiBDb3Jwb3JhdGlvbiIsInRyYWRlIjoiR2VuZXJhbCIsInNjb3JlIjowLCJ3ZWJzaXRlIjoiIiwiZW1haWwiOiJsb3VjZXJyZUBzb3V0aGVybnJvb3R6Y29ycC5jb20iLCJwaG9uZSI6Iig3MTYpIDQyNC0wMTUyIn0seyJpZCI6IjM0IiwibmFtZSI6IlBlYWsgQ29uc3RydWN0aW9uIE1hbmFnZXIiLCJ0cmFkZSI6IkdlbmVyYWwiLCJzY29yZSI6NDQsIndlYnNpdGUiOiIiLCJlbWFpbCI6ImNtQHRlYW1wZWFrLmNvbSIsInBob25lIjoiKDcxNikgMzc0LTAwMDAifSx7ImlkIjoiMzUiLCJuYW1lIjoiRE1ZTEVTIEdlbmVyYWwgQ29uc3RydWN0aW9uIiwidHJhZGUiOiJHZW5lcmFsIiwic2NvcmUiOjAsIndlYnNpdGUiOiIiLCJlbWFpbCI6ImRhcml1c215bGVzQGRteWxlc2luYy5jb20iLCJwaG9uZSI6Iig3MTYpIDkwOS0wNzE4In0seyJpZCI6IjM2IiwibmFtZSI6IkpDTSBSb29maW5nIiwidHJhZGUiOiJSb29maW5nIiwic2NvcmUiOjMwLCJ3ZWJzaXRlIjoiIiwiZW1haWwiOiJjb250YWN0QGpjbXJvb2ZpbmcuY29tIiwicGhvbmUiOiIoNzE2KSAyNDktMDk3OSJ9LHsiaWQiOiIzNyIsIm5hbWUiOiJHcmF2ZXMgQnJvcyBIb21lIEltcHJvdmVtZW50IiwidHJhZGUiOiJSb29maW5nIiwic2NvcmUiOjQ1LCJ3ZWJzaXRlIjoiIiwiZW1haWwiOiJzbWlsbGVyQGdyYXZlc2Jyb3MuY29tIiwicGhvbmUiOiIoNzE2KSA4NzUtNzY2MyJ9LHsiaWQiOiIzOCIsIm5hbWUiOiJBZGVtYSBIZWF0aW5nICYgQWlyIENvbmRpdGlvbmluZyIsInRyYWRlIjoiSFZBQyIsInNjb3JlIjoyMCwid2Vic2l0ZSI6IiIsImVtYWlsIjoiIiwicGhvbmUiOiIoNzE2KSA4MzQtNzYxMSJ9LHsiaWQiOiIzOSIsIm5hbWUiOiJSZWdhbiBIZWF0aW5nIGFuZCBDb29saW5nIiwidHJhZGUiOiJIVkFDIiwic2NvcmUiOjE1LCJ3ZWJzaXRlIjoiIiwiZW1haWwiOiIiLCJwaG9uZSI6Iig3MTYpIDY3NC04NTAwIn0seyJpZCI6IjQwIiwibmFtZSI6IlN1bGxpdmFuIEhlYXRpbmcgJiBDb29saW5nIiwidHJhZGUiOiJIVkFDIiwic2NvcmUiOjIyLCJ3ZWJzaXRlIjoiIiwiZW1haWwiOiIiLCJwaG9uZSI6Iig3MTYpIDYwOC04MTM5In0seyJpZCI6IjQxIiwibmFtZSI6IlBhcmlzZSBNZWNoYW5pY2FsIiwidHJhZGUiOiJIVkFDIiwic2NvcmUiOjE4LCJ3ZWJzaXRlIjoiIiwiZW1haWwiOiIiLCJwaG9uZSI6Iig3MTYpIDY5NC00OTAwIn1d';
+let CONTRACTORS = [];
+let contractorsLoaded = false;
+
+function loadContractors() {
+  if (contractorsLoaded) return;
+  try {
+    CONTRACTORS = JSON.parse(atob(CONTRACTORS_B64));
+    contractorsLoaded = true;
+  } catch (err) {
+    CONTRACTORS = [];
+    contractorsLoaded = false;
+    console.error('Could not decode contractor data.', err);
+  }
+}
+
+function clearPortalData() {
+  CONTRACTORS = [];
+  contractorsLoaded = false;
+}
+
+function getCategory(score) {
+  if (score <= 25) return { key: 'A', label: 'Tier 3', css: 'tier-a', pkg: 'Full Contractor Lead System' };
+  if (score <= 60) return { key: 'B', label: 'Tier 2', css: 'tier-b', pkg: 'Conversion Upgrade' };
+  return { key: 'C', label: 'Tier 1', css: 'tier-c', pkg: 'Intake Install' };
+}
+
+function scoreColor(score) {
+  if (score <= 25) return '#f87171';
+  if (score <= 60) return '#fbbf24';
+  return '#4ade80';
+}
+
+function routeTo(name) {
+  location.hash = '#' + name;
+}
+
+const sections = {
+  home: document.getElementById('homeSection'),
+  demo: document.getElementById('demoSection'),
+  capabilities: document.getElementById('capabilitiesSection'),
+  portal: document.getElementById('portalSection')
+};
+
+function setActiveNav(route) {
+  document.querySelectorAll('.nav a[data-route]').forEach(link => {
+    link.classList.toggle('active', link.dataset.route === route);
+  });
+}
+
+function showSection(route) {
+  Object.values(sections).forEach(s => s.classList.remove('active'));
+  sections[route].classList.add('active');
+  setActiveNav(route === 'portal' ? null : route);
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function handleRouting() {
+  const hash = (location.hash || '#home').replace('#', '');
+  if (hash === 'demo') return showSection('demo');
+  if (hash === 'capabilities') return showSection('capabilities');
+  if (hash === 'portal') {
+    openPortal();
+    return;
+  }
+  showSection('home');
+}
+
+
+const passwordOverlay = document.getElementById('passwordOverlay');
+const passwordForm = document.getElementById('passwordForm');
+const passwordInput = document.getElementById('passwordInput');
+const passwordError = document.getElementById('passwordError');
+const onboardingFrame = document.getElementById('onboardingFrame');
+
+const PORTAL_KEYS = {
+  ok: 'flexflow_portal_ok',
+  activity: 'flexflow_portal_last_activity',
+  attempts: 'flexflow_portal_attempts',
+  lockUntil: 'flexflow_portal_lock_until'
+};
+const PORTAL_SESSION_MS = 10 * 60 * 1000;
+const PORTAL_MAX_ATTEMPTS = 5;
+const PORTAL_LOCK_MS = 15 * 60 * 1000;
+let portalWatchdog = null;
+
+function portalUnlocked() {
+  return sessionStorage.getItem(PORTAL_KEYS.ok) === 'yes';
+}
+
+function getLockUntil() {
+  return Number(localStorage.getItem(PORTAL_KEYS.lockUntil) || '0');
+}
+
+function portalLockedOut() {
+  return Date.now() < getLockUntil();
+}
+
+function portalAttempts() {
+  return Number(localStorage.getItem(PORTAL_KEYS.attempts) || '0');
+}
+
+function setPortalAttempts(value) {
+  localStorage.setItem(PORTAL_KEYS.attempts, String(value));
+}
+
+function resetPortalAttempts() {
+  setPortalAttempts(0);
+  localStorage.removeItem(PORTAL_KEYS.lockUntil);
+}
+
+function formatRemaining(ms) {
+  const totalSeconds = Math.max(1, Math.ceil(ms / 1000));
+  const mins = Math.floor(totalSeconds / 60);
+  const secs = totalSeconds % 60;
+  return `${mins}:${String(secs).padStart(2, '0')}`;
+}
+
+function markPortalActivity() {
+  if (!portalUnlocked()) return;
+  sessionStorage.setItem(PORTAL_KEYS.activity, String(Date.now()));
+}
+
+function teardownPortal(reason = '') {
+  sessionStorage.removeItem(PORTAL_KEYS.ok);
+  sessionStorage.removeItem(PORTAL_KEYS.activity);
+  clearPortalData();
+  portalStats.innerHTML = '';
+  leadsTableBody.innerHTML = '';
+  leadSearch.value = '';
+  if (onboardingFrame) onboardingFrame.removeAttribute('src');
+  document.querySelectorAll('[data-filter]').forEach(b => b.classList.toggle('active', b.dataset.filter === 'all'));
+  activeFilter = 'all';
+  if (reason) passwordError.textContent = reason;
+}
+
+function startPortalWatchdog() {
+  clearInterval(portalWatchdog);
+  portalWatchdog = setInterval(() => {
+    if (!portalUnlocked()) return;
+    const last = Number(sessionStorage.getItem(PORTAL_KEYS.activity) || '0');
+    if (!last || Date.now() - last > PORTAL_SESSION_MS) {
+      teardownPortal('Portal locked after inactivity.');
+      passwordOverlay.classList.add('open');
+      routeTo('home');
+    }
+  }, 15000);
+}
+
+function unlockPortalSession() {
+  sessionStorage.setItem(PORTAL_KEYS.ok, 'yes');
+  markPortalActivity();
+  resetPortalAttempts();
+  passwordOverlay.classList.remove('open');
+  passwordInput.value = '';
+  passwordError.textContent = '';
+  loadContractors();
+  renderPortalStats();
+  renderLeads();
+  if (onboardingFrame && onboardingFrame.dataset.src && !onboardingFrame.getAttribute('src')) {
+    onboardingFrame.setAttribute('src', onboardingFrame.dataset.src);
+  }
+  startPortalWatchdog();
+  showSection('portal');
+  history.replaceState(null, '', '#portal');
+}
+
+function openPortal() {
+  if (portalLockedOut()) {
+    passwordOverlay.classList.add('open');
+    passwordError.textContent = `Too many failed attempts. Try again in ${formatRemaining(getLockUntil() - Date.now())}.`;
+    passwordInput.value = '';
+    return;
+  }
+  if (!portalUnlocked()) {
+    passwordOverlay.classList.add('open');
+    passwordError.textContent = '';
+    setTimeout(() => passwordInput.focus(), 50);
+    return;
+  }
+  markPortalActivity();
+  loadContractors();
+  renderPortalStats();
+  renderLeads();
+  if (onboardingFrame && onboardingFrame.dataset.src && !onboardingFrame.getAttribute('src')) {
+    onboardingFrame.setAttribute('src', onboardingFrame.dataset.src);
+  }
+  showSection('portal');
+}
+
+document.getElementById('portalLink').addEventListener('click', openPortal);
+document.getElementById('lockPortalBtn').addEventListener('click', () => {
+  teardownPortal('Portal locked.');
+  routeTo('home');
+});
+
+passwordForm.addEventListener('submit', (e) => {
+  e.preventDefault();
+  if (portalLockedOut()) {
+    passwordError.textContent = `Too many failed attempts. Try again in ${formatRemaining(getLockUntil() - Date.now())}.`;
+    return;
+  }
+  if (passwordInput.value === PORTAL_PASSWORD) {
+    unlockPortalSession();
+  } else {
+    const attempts = portalAttempts() + 1;
+    setPortalAttempts(attempts);
+    if (attempts >= PORTAL_MAX_ATTEMPTS) {
+      const lockUntil = Date.now() + PORTAL_LOCK_MS;
+      localStorage.setItem(PORTAL_KEYS.lockUntil, String(lockUntil));
+      passwordError.textContent = `Too many failed attempts. Portal locked for ${Math.round(PORTAL_LOCK_MS / 60000)} minutes.`;
+    } else {
+      passwordError.textContent = `Incorrect password. ${PORTAL_MAX_ATTEMPTS - attempts} attempt(s) remaining.`;
+    }
+    passwordInput.value = '';
+  }
+});
+
+passwordOverlay.addEventListener('click', (e) => {
+  if (e.target === passwordOverlay) {
+    passwordOverlay.classList.remove('open');
+    routeTo('home');
+  }
+});
+
+document.addEventListener('visibilitychange', () => {
+  if (document.hidden && portalUnlocked()) markPortalActivity();
+});
+['click','keydown','mousemove','scroll','touchstart'].forEach(evt => {
+  document.addEventListener(evt, markPortalActivity, { passive: true });
+});
+
+window.addEventListener('beforeunload', () => {
+  teardownPortal();
+});
+
+window.addEventListener('contextmenu', (e) => {
+  if (portalUnlocked()) e.preventDefault();
+});
+
+window.addEventListener('keydown', (e) => {
+  if (!portalUnlocked()) return;
+  const key = e.key.toLowerCase();
+  if (key === 'f12' || (e.ctrlKey && e.shiftKey && ['i', 'j', 'c'].includes(key)) || (e.ctrlKey && ['u', 's'].includes(key))) {
+    e.preventDefault();
+  }
+});
+
+let activePortalTab = 'leads';
+function setPortalTab(tab) {
+  activePortalTab = tab;
+  document.querySelectorAll('.portal-tabs .tab-btn').forEach(btn => btn.classList.toggle('active', btn.dataset.tab === tab));
+  document.getElementById('tab-leads').classList.toggle('hidden', tab !== 'leads');
+  document.getElementById('tab-onboarding').classList.toggle('hidden', tab !== 'onboarding');
+  markPortalActivity();
+}
+document.querySelectorAll('.portal-tabs .tab-btn').forEach(btn => btn.addEventListener('click', () => setPortalTab(btn.dataset.tab)));
+
+
+const portalStats = document.getElementById('portalStats');
+const leadsTableBody = document.getElementById('leadsTableBody');
+const leadSearch = document.getElementById('leadSearch');
+let activeFilter = 'all';
+
+function renderPortalStats() {
+  loadContractors();
+  const tier3 = CONTRACTORS.filter(c => getCategory(c.score).key === 'A').length;
+  const tier2 = CONTRACTORS.filter(c => getCategory(c.score).key === 'B').length;
+  const tier1 = CONTRACTORS.filter(c => getCategory(c.score).key === 'C').length;
+  const stats = [
+    ['Total leads', CONTRACTORS.length, 'Current outreach list'],
+    ['Tier 3', tier3, 'Best full-site prospects'],
+    ['Tier 2', tier2, 'Good conversion-upgrade fits'],
+    ['Tier 1', tier1, 'Best intake-install fits']
+  ];
+  portalStats.innerHTML = stats.map(([label, value, copy]) => `
+    <div class="portal-card"><h3>${label}</h3><p>${copy}</p><strong>${value}</strong></div>
+  `).join('');
+}
+
+function renderLeads() {
+  loadContractors();
+  const q = leadSearch.value.trim().toLowerCase();
+  let list = CONTRACTORS.filter(c => {
+    if (activeFilter !== 'all' && getCategory(c.score).key !== activeFilter) return false;
+    if (!q) return true;
+    return [c.name, c.trade, c.phone, c.email].join(' ').toLowerCase().includes(q);
+  });
+  leadsTableBody.innerHTML = list.map(c => {
+    const cat = getCategory(c.score);
+    return `
+      <tr>
+        <td><strong>${c.name}</strong><div style="color:var(--soft);margin-top:4px;">${c.phone}</div></td>
+        <td><span class="badge trade-${c.trade}">${c.trade}</span></td>
+        <td><span class="score-track"><span class="score-fill" style="width:${c.score}%;background:${scoreColor(c.score)}"></span></span>${c.score}</td>
+        <td><span class="badge ${cat.css}">${cat.label}</span></td>
+        <td>${cat.pkg}</td>
+        <td>${c.email || '<span style="color:var(--soft);">No email listed</span>'}</td>
+      </tr>
+    `;
+  }).join('');
+}
+
+leadSearch.addEventListener('input', renderLeads);
+document.querySelectorAll('[data-filter]').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('[data-filter]').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    activeFilter = btn.dataset.filter;
+    renderLeads();
+  });
+});
+
+const chatState = {
+  mode: null,
+  issueType: null,
+  urgency: null,
+  name: null,
+  address: null,
+  phone: null,
+  preferredTime: null,
+  description: null,
+  completed: false,
+  lastAsked: null
+};
+
+const publicChatMessages = document.getElementById('publicChatMessages');
+const publicChatForm = document.getElementById('publicChatForm');
+const publicChatInput = document.getElementById('publicChatInput');
+
+function addChatMessage(text, role = 'bot') {
+  const el = document.createElement('div');
+  el.className = `msg ${role}`;
+  el.textContent = text;
+  publicChatMessages.appendChild(el);
+  publicChatMessages.scrollTop = publicChatMessages.scrollHeight;
+}
+
+function detectMode(text) {
+  const t = text.toLowerCase();
+  if (/(emergency|urgent|asap|right now|immediately|flood|burst|leak|no heat|furnace|no power|sparks|overflow|backed up|backup|stopped working)/.test(t)) return 'emergency';
+  if (/(quote|estimate|pricing|price|cost|install|replace|inspection|project|remodel|upgrade|looking for)/.test(t)) return 'quote';
+  return null;
+}
+
+function cleanText(text) {
+  return text.trim().replace(/\s+/g, ' ');
+}
+
+function extractDetails(text) {
+  const raw = cleanText(text);
+  const lower = raw.toLowerCase();
+
+  const phone = raw.match(/(?:\+?1[-.\s]?)?(?:\(?\d{3}\)?[-.\s]?\d{3}[-.\s]?\d{4})/);
+  if (phone && !chatState.phone) chatState.phone = phone[0];
+
+  const nameMatch = raw.match(/(?:my name is|i am|i'm|this is)\s+([A-Za-z]+(?:\s+[A-Za-z]+)?)/i);
+  if (nameMatch && !chatState.name) chatState.name = nameMatch[1].trim();
+
+  const addressMatch = raw.match(/(?:at|address is|i'm at|im at|located at)\s+([0-9]{1,6}\s+[A-Za-z0-9.'\- ]+(?:street|st|road|rd|avenue|ave|drive|dr|lane|ln|boulevard|blvd|court|ct|way|circle|cir|place|pl|terrace|ter))/i);
+  if (addressMatch && !chatState.address) chatState.address = addressMatch[1].trim();
+
+  if (!chatState.issueType) {
+    if (/(furnace|heat|hvac|ac|air conditioner|cooling|boiler|thermostat)/.test(lower)) chatState.issueType = 'HVAC issue';
+    else if (/(pipe|plumb|drain|water heater|flood|leak|sump|sewer|toilet)/.test(lower)) chatState.issueType = 'Plumbing issue';
+    else if (/(roof|shingle|storm damage|gutter|skylight)/.test(lower)) chatState.issueType = 'Roofing issue';
+    else if (/(electrical|breaker|panel|power|outlet|sparks|wiring|generator)/.test(lower)) chatState.issueType = 'Electrical issue';
+    else if (/(garage door|door opener|spring|track)/.test(lower)) chatState.issueType = 'Garage door issue';
+    else if (/(tree|branch|stump|removal)/.test(lower)) chatState.issueType = 'Tree service request';
+  }
+
+  if (!chatState.mode) {
+    const mode = detectMode(raw);
+    if (mode) chatState.mode = mode;
+  }
+
+  if (!chatState.urgency) {
+    if (/(urgent|emergency|asap|right now|immediately|now|today)/.test(lower)) chatState.urgency = 'Urgent';
+    else if (/(quote|estimate|next week|sometime|not urgent|routine|pricing)/.test(lower)) chatState.urgency = 'Routine';
+  }
+
+  if (!chatState.preferredTime) {
+    const timePhrase = raw.match(/(morning|afternoon|evening|anytime|today|tomorrow|after\s?\d{1,2}|after five|after 5|this week|next week)/i);
+    if (timePhrase) chatState.preferredTime = timePhrase[1];
+  }
+
+  if ((!chatState.description || chatState.description.length < 12) && raw.length > 18 && !/^(yes|yeah|yep|si|no|nah|ok|okay|hello|hi|hey)$/i.test(lower)) {
+    chatState.description = raw;
+  }
+}
+
+function nextMissingField() {
+  if (!chatState.issueType) return 'issueType';
+  if (!chatState.mode) return 'mode';
+  if (!chatState.urgency) return 'urgency';
+  if (!chatState.address) return 'address';
+  if (!chatState.name) return 'name';
+  if (!chatState.phone) return 'phone';
+  if (!chatState.description || chatState.description.length < 10) return 'description';
+  if (!chatState.preferredTime) return 'preferredTime';
+  return null;
+}
+
+function fieldPrompt(field, retry = false) {
+  const normal = {
+    issueType: 'What kind of job is this — HVAC, plumbing, roofing, electrical, garage door, tree service, or something else?',
+    mode: 'Is this an emergency service issue, or are you looking for a quote/estimate?',
+    urgency: 'How urgent is this — happening right now, today, or just looking for pricing?',
+    address: 'What is the service address?',
+    name: 'What is your name?',
+    phone: 'What is the best phone number for a callback?',
+    description: 'Can you give a short description of what is going on?',
+    preferredTime: 'What is the best time for a callback?'
+  };
+  const retryPrompts = {
+    issueType: 'I still need the job type. For example: plumbing leak, furnace issue, roofing problem, electrical issue, garage door repair, or tree work.',
+    mode: 'I still need to know whether this is an emergency or just a quote request.',
+    urgency: 'Would you say this needs help right now, today, or is it just a quote/pricing request?',
+    address: 'I still need the job address so I can route this correctly.',
+    name: 'I still need your name for the request.',
+    phone: 'I still need a callback number, like 716-555-1234.',
+    description: 'I still need one short sentence on what happened.',
+    preferredTime: 'What is the best callback window — morning, afternoon, evening, or anytime?'
+  };
+  return retry ? retryPrompts[field] : normal[field];
+}
+
+function summaryText() {
+  return `Thanks${chatState.name ? ', ' + chatState.name : ''}. I’ve got this as a ${chatState.urgency || 'service'} ${chatState.issueType ? '(' + chatState.issueType + ')' : 'request'} at ${chatState.address}. Callback number: ${chatState.phone}. Best time: ${chatState.preferredTime}. A contractor could now review this and follow up directly.`;
+}
+
+function providedNewInfo(beforeState) {
+  return ['mode','issueType','urgency','name','address','phone','preferredTime','description'].some(key => beforeState[key] !== chatState[key]);
+}
+
+function botReply(userText) {
+  const raw = cleanText(userText);
+  const lower = raw.toLowerCase();
+
+  if (/^(hello|hi|hey|yo|nihao|hola)$/i.test(lower)) {
+    const field = nextMissingField() || 'issueType';
+    chatState.lastAsked = field;
+    return `Hi — happy to help. ${fieldPrompt(field)}`;
+  }
+
+  if (/^(yes|yeah|yep|si|sure|ok|okay)$/i.test(lower) && chatState.lastAsked) {
+    return `Got it. ${fieldPrompt(chatState.lastAsked, true)}`;
+  }
+
+  const beforeState = { ...chatState };
+  extractDetails(raw);
+
+  const missing = nextMissingField();
+
+  if (!missing) {
+    chatState.completed = true;
+    chatState.lastAsked = null;
+    return summaryText();
+  }
+
+  const newInfo = providedNewInfo(beforeState);
+  const askedSame = chatState.lastAsked === missing;
+  chatState.lastAsked = missing;
+
+  const acknowledgements = [];
+  if (beforeState.name !== chatState.name && chatState.name) acknowledgements.push(`Got it, ${chatState.name}.`);
+  if (beforeState.address !== chatState.address && chatState.address) acknowledgements.push('I have the address.');
+  if (beforeState.phone !== chatState.phone && chatState.phone) acknowledgements.push('I have your callback number.');
+  if (beforeState.issueType !== chatState.issueType && chatState.issueType) acknowledgements.push(`Noted: ${chatState.issueType.toLowerCase()}.`);
+  if (beforeState.urgency !== chatState.urgency && chatState.urgency) acknowledgements.push(`Marked as ${chatState.urgency.toLowerCase()}.`);
+
+  if (!newInfo) {
+    return fieldPrompt(missing, askedSame);
+  }
+
+  return `${acknowledgements.join(' ')} ${fieldPrompt(missing, false)}`.trim();
+}
+
+addChatMessage('Hi — I’m the FlexFlow intake demo. Tell me what happened, what type of job it is, and where the property is located. I’ll only ask for the details that are still missing.');
+
+publicChatForm.addEventListener('submit', (e) => {
+  e.preventDefault();
+  const text = publicChatInput.value.trim();
+  if (!text) return;
+  addChatMessage(text, 'user');
+  publicChatInput.value = '';
+  setTimeout(() => addChatMessage(botReply(text), 'bot'), 220);
+});
+
+teardownPortal();
+window.addEventListener('hashchange', handleRouting);
+handleRouting();
+</script>
+</body>
+</html>
